@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Future You — The Life Simulator</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- Cursor -->
+<div id="cursor"></div>
+<canvas id="trailCanvas"></canvas>
+
+<!-- ── SIDEBAR NAV ── -->
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-logo">
+    <span class="logo-star">✦</span>
+    <span class="logo-text">Future You</span>
+  </div>
+  <nav class="sidebar-nav">
+    <button class="nav-item active" data-page="home">
+      <span class="nav-icon">🏠</span><span class="nav-label">Home</span>
+    </button>
+    <button class="nav-item" data-page="simulate">
+      <span class="nav-icon">⚡</span><span class="nav-label">Simulate</span>
+    </button>
+    <button class="nav-item" data-page="futures">
+      <span class="nav-icon">🔮</span><span class="nav-label">My Futures</span>
+      <span class="nav-badge hidden" id="badgeFutures">4</span>
+    </button>
+    <button class="nav-item" data-page="letters">
+      <span class="nav-icon">✉️</span><span class="nav-label">Letters</span>
+      <span class="nav-badge hidden" id="badgeLetters">New</span>
+    </button>
+    <button class="nav-item" data-page="constellation">
+      <span class="nav-icon">✨</span><span class="nav-label">Stars</span>
+    </button>
+    <button class="nav-item" data-page="burnout">
+      <span class="nav-icon">📊</span><span class="nav-label">Wellbeing</span>
+    </button>
+    <button class="nav-item" data-page="quests">
+      <span class="nav-icon">🎯</span><span class="nav-label">Quests</span>
+      <span class="nav-badge hidden" id="badgeQuests">8</span>
+    </button>
+    <button class="nav-item" data-page="sdg">
+      <span class="nav-icon">🌍</span><span class="nav-label">Impact</span>
+    </button>
+  </nav>
+  <div class="sidebar-footer">
+    <div class="sidebar-user" id="sidebarUser">
+      <div class="user-avatar">?</div>
+      <div class="user-info">
+        <span class="user-name" id="userNameDisplay">Your Name</span>
+        <span class="user-tag">Future Explorer</span>
+      </div>
+    </div>
+  </div>
+</aside>
+
+<!-- ── MOBILE TOP BAR ── -->
+<div class="mobile-bar">
+  <div class="mobile-logo"><span class="logo-star">✦</span> Future You</div>
+  <button class="mobile-menu-btn" id="mobileMenuBtn" onclick="toggleMobileMenu()">☰</button>
+</div>
+<div class="mobile-nav hidden" id="mobileNav">
+  <button class="mnav-item" data-page="home">🏠 Home</button>
+  <button class="mnav-item" data-page="simulate">⚡ Simulate</button>
+  <button class="mnav-item" data-page="futures">🔮 My Futures</button>
+  <button class="mnav-item" data-page="letters">✉️ Letters</button>
+  <button class="mnav-item" data-page="constellation">✨ Stars</button>
+  <button class="mnav-item" data-page="burnout">📊 Wellbeing</button>
+  <button class="mnav-item" data-page="quests">🎯 Quests</button>
+  <button class="mnav-item" data-page="sdg">🌍 Impact</button>
+</div>
+
+<!-- ── MAIN CONTENT ── -->
+<main class="main" id="main">
+
+  <!-- ════ PAGE: HOME ════ -->
+  <div class="page active" id="page-home">
+    <div class="hero-bg">
+      <canvas id="starsCanvas"></canvas>
+      <div class="blob b1"></div><div class="blob b2"></div>
+      <div class="blob b3"></div><div class="blob b4"></div>
+    </div>
+    <div class="hero-content">
+      <div class="hero-pill"><span class="pill-dot"></span>The life simulator every student wishes they had at 18</div>
+      <h1 class="hero-title">Meet Your<br><span class="grad-text">Future Selves.</span></h1>
+      <p class="hero-sub">Discover the life you're building — before you get there.<br>Four futures. One honest look.</p>
+      <div class="hero-cta">
+        <button class="btn-primary" onclick="goToPage('simulate')">Start My Simulation →</button>
+        <button class="btn-ghost" onclick="goToPage('futures')">See Example Futures</button>
+      </div>
+      <div class="hero-cards">
+        <div class="preview-card pc-green"><span>🚀</span><b>Thriving You</b><p>Skills × habits × momentum</p></div>
+        <div class="preview-card pc-purple"><span>😌</span><b>Comfortable You</b><p>Balance × stability × peace</p></div>
+        <div class="preview-card pc-peach"><span>🔥</span><b>Burned Out You</b><p>Overwork × stress × reset</p></div>
+        <div class="preview-card pc-pink"><span>🎲</span><b>Unexpected You</b><p>Plot twist × wonder × wild</p></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════ PAGE: SIMULATE ════ -->
+  <div class="page" id="page-simulate">
+    <div class="page-inner">
+      <div class="page-header">
+        <div class="page-label">Step-by-step</div>
+        <h2 class="page-title">Build your simulation.</h2>
+        <p class="page-sub">Six steps. Honest answers. Four complete futures.</p>
+      </div>
+
+      <div class="sim-card">
+        <!-- Progress -->
+        <div class="sim-progress">
+          <div class="prog-track"><div class="prog-fill" id="progFill"></div></div>
+          <div class="prog-dots" id="progDots"></div>
+        </div>
+
+        <!-- Steps -->
+        <div class="sim-steps" id="simSteps">
+
+          <div class="step active" data-step="1">
+            <div class="step-hdr"><div class="step-emoji">👤</div><h3>Personal Info</h3><p>Let's start with who you are.</p></div>
+            <div class="fgrid">
+              <div class="fg"><label>Your Name</label><input type="text" id="f_name" placeholder="What should we call you?"/></div>
+              <div class="fg"><label>Age</label><input type="number" id="f_age" placeholder="18–25" min="16" max="30"/></div>
+              <div class="fg"><label>Degree / Field</label><input type="text" id="f_degree" placeholder="e.g. Computer Science…"/></div>
+              <div class="fg"><label>Current Year</label>
+                <select id="f_year">
+                  <option value="">Select year</option>
+                  <option value="1">1st Year</option>
+                  <option value="2">2nd Year</option>
+                  <option value="3">3rd Year</option>
+                  <option value="4">4th / Final Year</option>
+                  <option value="grad">Grad / Working</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="step" data-step="2">
+            <div class="step-hdr"><div class="step-emoji">⚡</div><h3>Your Skills</h3><p>Select everything you know or are learning.</p></div>
+            <div class="chip-groups" id="chipGroups">
+              <div class="cg"><div class="cg-label">Tech</div><div class="chips">
+                <button class="chip" data-sk="HTML/CSS">HTML/CSS</button>
+                <button class="chip" data-sk="JavaScript">JavaScript</button>
+                <button class="chip" data-sk="Python">Python</button>
+                <button class="chip" data-sk="React">React</button>
+                <button class="chip" data-sk="Data Analysis">Data Analysis</button>
+                <button class="chip" data-sk="Machine Learning">ML / AI</button>
+                <button class="chip" data-sk="UI/UX Design">UI/UX Design</button>
+                <button class="chip" data-sk="SQL">SQL</button>
+              </div></div>
+              <div class="cg"><div class="cg-label">Soft Skills</div><div class="chips">
+                <button class="chip" data-sk="Communication">Communication</button>
+                <button class="chip" data-sk="Leadership">Leadership</button>
+                <button class="chip" data-sk="Writing">Writing</button>
+                <button class="chip" data-sk="Problem Solving">Problem Solving</button>
+                <button class="chip" data-sk="Public Speaking">Public Speaking</button>
+                <button class="chip" data-sk="Teamwork">Teamwork</button>
+              </div></div>
+              <div class="cg"><div class="cg-label">Creative</div><div class="chips">
+                <button class="chip" data-sk="Graphic Design">Graphic Design</button>
+                <button class="chip" data-sk="Video Editing">Video Editing</button>
+                <button class="chip" data-sk="Photography">Photography</button>
+                <button class="chip" data-sk="Content Creation">Content Creation</button>
+                <button class="chip" data-sk="Illustration">Illustration</button>
+              </div></div>
+              <div class="cg"><div class="cg-label">Business</div><div class="chips">
+                <button class="chip" data-sk="Marketing">Marketing</button>
+                <button class="chip" data-sk="Finance">Finance</button>
+                <button class="chip" data-sk="Product Management">Product Management</button>
+                <button class="chip" data-sk="Sales">Sales</button>
+                <button class="chip" data-sk="Entrepreneurship">Entrepreneurship</button>
+              </div></div>
+            </div>
+          </div>
+
+          <div class="step" data-step="3">
+            <div class="step-hdr"><div class="step-emoji">🎯</div><h3>Career Goals</h3><p>Where are you heading?</p></div>
+            <div class="fgrid">
+              <div class="fg full"><label>Dream Role</label><input type="text" id="f_role" placeholder="e.g. Product Designer, ML Engineer, Founder…"/></div>
+              <div class="fg full"><label>Work environment that excites you</label>
+                <div class="rcards" id="rc_env">
+                  <label class="rc"><input type="radio" name="env" value="startup"><span>🚀 Startup</span></label>
+                  <label class="rc"><input type="radio" name="env" value="corporate"><span>🏢 Corporate</span></label>
+                  <label class="rc"><input type="radio" name="env" value="freelance"><span>💼 Freelance</span></label>
+                  <label class="rc"><input type="radio" name="env" value="nonprofit"><span>🌍 Non-profit</span></label>
+                  <label class="rc"><input type="radio" name="env" value="research"><span>🔬 Research</span></label>
+                </div>
+              </div>
+              <div class="fg full"><label>What drives you most?</label>
+                <div class="rcards">
+                  <label class="rc"><input type="radio" name="motiv" value="impact"><span>🌱 Impact</span></label>
+                  <label class="rc"><input type="radio" name="motiv" value="money"><span>💰 Wealth</span></label>
+                  <label class="rc"><input type="radio" name="motiv" value="creativity"><span>🎨 Creativity</span></label>
+                  <label class="rc"><input type="radio" name="motiv" value="recognition"><span>🏆 Recognition</span></label>
+                  <label class="rc"><input type="radio" name="motiv" value="freedom"><span>🦋 Freedom</span></label>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="step" data-step="4">
+            <div class="step-hdr"><div class="step-emoji">🌙</div><h3>Lifestyle Habits</h3><p>Honest answers build accurate futures.</p></div>
+            <div class="fgrid">
+              <div class="fg full"><label>Sleep per night: <span class="rv" id="rv_sleep">7</span> hrs</label>
+                <input type="range" id="f_sleep" min="4" max="10" value="7" step="1" oninput="document.getElementById('rv_sleep').textContent=this.value">
+                <div class="rl"><span>😵 4h</span><span>✨ 7-8h</span><span>😴 10h</span></div>
+              </div>
+              <div class="fg full"><label>Daily screen time (non-work): <span class="rv" id="rv_screen">3</span> hrs</label>
+                <input type="range" id="f_screen" min="0" max="10" value="3" step="1" oninput="document.getElementById('rv_screen').textContent=this.value">
+                <div class="rl"><span>📵 0h</span><span>📱 5h</span><span>🤯 10h</span></div>
+              </div>
+              <div class="fg full"><label>Personal projects frequency</label>
+                <div class="rcards">
+                  <label class="rc"><input type="radio" name="proj" value="daily"><span>🔥 Daily</span></label>
+                  <label class="rc"><input type="radio" name="proj" value="weekly"><span>📅 Weekly</span></label>
+                  <label class="rc"><input type="radio" name="proj" value="rarely"><span>🐌 Rarely</span></label>
+                  <label class="rc"><input type="radio" name="proj" value="never"><span>💤 Never</span></label>
+                </div>
+              </div>
+              <div class="fg full"><label>Physical activity</label>
+                <div class="rcards">
+                  <label class="rc"><input type="radio" name="exer" value="daily"><span>🏃 Daily</span></label>
+                  <label class="rc"><input type="radio" name="exer" value="sometimes"><span>🚶 Sometimes</span></label>
+                  <label class="rc"><input type="radio" name="exer" value="never"><span>🛋️ Couch mode</span></label>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="step" data-step="5">
+            <div class="step-hdr"><div class="step-emoji">💼</div><h3>Internship Status</h3><p>Real-world experience shapes every path.</p></div>
+            <div class="fgrid">
+              <div class="fg full"><label>Internship experience?</label>
+                <div class="rcards">
+                  <label class="rc"><input type="radio" name="intern" value="yes_rel"><span>✅ Yes, in my field</span></label>
+                  <label class="rc"><input type="radio" name="intern" value="yes_not"><span>🔄 Yes, unrelated</span></label>
+                  <label class="rc"><input type="radio" name="intern" value="applying"><span>📩 Actively applying</span></label>
+                  <label class="rc"><input type="radio" name="intern" value="no"><span>❌ Not yet</span></label>
+                </div>
+              </div>
+              <div class="fg full"><label>Portfolio / projects status?</label>
+                <div class="rcards">
+                  <label class="rc"><input type="radio" name="portfolio" value="strong"><span>💪 Strong portfolio</span></label>
+                  <label class="rc"><input type="radio" name="portfolio" value="building"><span>🔨 Building it now</span></label>
+                  <label class="rc"><input type="radio" name="portfolio" value="weak"><span>📭 Barely started</span></label>
+                </div>
+              </div>
+              <div class="fg full"><label>LinkedIn / networking status?</label>
+                <div class="rcards">
+                  <label class="rc"><input type="radio" name="network" value="active"><span>🌐 Very active</span></label>
+                  <label class="rc"><input type="radio" name="network" value="moderate"><span>👋 Moderate</span></label>
+                  <label class="rc"><input type="radio" name="network" value="ghost"><span>👻 Ghost account</span></label>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="step" data-step="6">
+            <div class="step-hdr"><div class="step-emoji">🌟</div><h3>Ambitions & Fears</h3><p>Dream big. Be real. The simulation works better this way.</p></div>
+            <div class="fgrid">
+              <div class="fg full"><label>What do you most want in the next 5 years?</label>
+                <textarea id="f_ambitions" rows="3" placeholder="Build a startup, travel, get into a dream company, make your family proud…"></textarea>
+              </div>
+              <div class="fg full"><label>Biggest fear right now</label>
+                <div class="rcards">
+                  <label class="rc"><input type="radio" name="fear" value="failure"><span>😰 Failing publicly</span></label>
+                  <label class="rc"><input type="radio" name="fear" value="irrelevant"><span>📉 Becoming irrelevant</span></label>
+                  <label class="rc"><input type="radio" name="fear" value="stuck"><span>🔁 Getting stuck</span></label>
+                  <label class="rc"><input type="radio" name="fear" value="lonely"><span>🌙 Loneliness</span></label>
+                  <label class="rc"><input type="radio" name="fear" value="burnout"><span>🔥 Burning out</span></label>
+                </div>
+              </div>
+              <div class="fg full"><label>If you had one superpower right now</label>
+                <div class="rcards">
+                  <label class="rc"><input type="radio" name="power" value="focus"><span>🎯 Laser focus</span></label>
+                  <label class="rc"><input type="radio" name="power" value="confidence"><span>💫 Confidence</span></label>
+                  <label class="rc"><input type="radio" name="power" value="network"><span>🤝 Perfect network</span></label>
+                  <label class="rc"><input type="radio" name="power" value="energy"><span>⚡ Infinite energy</span></label>
+                  <label class="rc"><input type="radio" name="power" value="clarity"><span>🔮 Total clarity</span></label>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div><!-- /simSteps -->
+
+        <div class="sim-nav-row">
+          <button class="btn-ghost" id="btnPrev" onclick="changeStep(-1)" style="display:none">← Back</button>
+          <div class="step-counter"><span id="scCurrent">1</span> / 6</div>
+          <button class="btn-primary" id="btnNext" onclick="changeStep(1)">Continue →</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════ PAGE: FUTURES ════ -->
+  <div class="page" id="page-futures">
+    <div class="page-inner">
+      <div class="page-header">
+        <div class="page-label">Your simulation results</div>
+        <h2 class="page-title">Four futures, <span class="grad-text" id="ftName">Explorer</span>.</h2>
+        <p class="page-sub" id="ftSubtitle">Complete the simulation to unlock your personalised futures.</p>
+      </div>
+      <div id="futuresGrid" class="futures-grid"></div>
+      <div id="futureDetail" class="future-detail hidden"></div>
+      <div id="futuresEmpty" class="empty-state">
+        <div class="empty-icon">🔮</div>
+        <h3>Your futures are waiting</h3>
+        <p>Complete the 6-step simulation to generate your four personalised future paths.</p>
+        <button class="btn-primary" onclick="goToPage('simulate')">Start Simulation →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════ PAGE: LETTERS ════ -->
+  <div class="page" id="page-letters">
+    <div class="page-inner">
+      <div class="page-header">
+        <div class="page-label">Future letters</div>
+        <h2 class="page-title">They wrote you something.</h2>
+        <p class="page-sub">Four versions of you, reaching back through time.</p>
+      </div>
+      <div id="lettersEmpty" class="empty-state">
+        <div class="empty-icon">✉️</div>
+        <h3>No letters yet</h3>
+        <p>Run the simulation first — then your future selves will reach out.</p>
+        <button class="btn-primary" onclick="goToPage('simulate')">Run Simulation →</button>
+      </div>
+      <div id="lettersContent" class="hidden">
+        <div class="letter-tabs" id="letterTabs"></div>
+        <div class="letter-card" id="letterCard"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════ PAGE: CONSTELLATION ════ -->
+  <div class="page dark-page" id="page-constellation">
+    <div class="page-inner">
+      <div class="page-header dark-hdr">
+        <div class="page-label mint-label">Opportunity map</div>
+        <h2 class="page-title white-title">Your skill constellation.</h2>
+        <p class="page-sub muted-sub">Every skill is a star. Every path is a story. Hover to explore.</p>
+      </div>
+      <canvas id="conCanvas" width="860" height="500"></canvas>
+      <div class="con-legend">
+        <span><span class="dot green-dot"></span> Your skills</span>
+        <span><span class="dot purple-dot"></span> Skills to explore</span>
+        <span><span class="line-dot"></span> Learning path</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════ PAGE: BURNOUT ════ -->
+  <div class="page" id="page-burnout">
+    <div class="page-inner">
+      <div class="page-header">
+        <div class="page-label">Wellbeing check</div>
+        <h2 class="page-title">Your life balance report.</h2>
+        <p class="page-sub">Based on your habits and inputs. Recalculates when you re-simulate.</p>
+      </div>
+      <div class="meters-grid" id="metersGrid"></div>
+      <div class="burnout-tip" id="burnoutTip"></div>
+    </div>
+  </div>
+
+  <!-- ════ PAGE: QUESTS ════ -->
+  <div class="page" id="page-quests">
+    <div class="page-inner">
+      <div class="page-header">
+        <div class="page-label">This week's mission</div>
+        <h2 class="page-title">Weekly quests.</h2>
+        <p class="page-sub">Small wins compound into big futures. Check them off as you go.</p>
+      </div>
+      <div class="xp-bar-wrap">
+        <div class="xp-label">Weekly XP: <span id="xpScore">0</span> / 280</div>
+        <div class="xp-track"><div class="xp-fill" id="xpFill"></div></div>
+      </div>
+      <div class="quests-grid" id="questsGrid"></div>
+    </div>
+  </div>
+
+  <!-- ════ PAGE: SDG ════ -->
+  <div class="page" id="page-sdg">
+    <div class="page-inner">
+      <div class="page-header">
+        <div class="page-label">Bigger picture</div>
+        <h2 class="page-title">Your growth shapes the world.</h2>
+        <p class="page-sub">Personal development creates global change. Here's how you contribute.</p>
+      </div>
+      <div class="sdg-grid">
+        <div class="sdg-card sc1">
+          <div class="sdg-num">04</div>
+          <div class="sdg-title">Quality Education</div>
+          <p>Every skill you build contributes to knowledge equity and lifelong learning culture.</p>
+          <div class="sdg-bar"><div class="sdg-fill" style="--p:82%"></div></div>
+          <span class="sdg-pct">82% alignment</span>
+        </div>
+        <div class="sdg-card sc2">
+          <div class="sdg-num">03</div>
+          <div class="sdg-title">Good Health</div>
+          <p>Sleep, balance, and mental wellness are the foundation of sustainable impact.</p>
+          <div class="sdg-bar"><div class="sdg-fill sf2" style="--p:68%"></div></div>
+          <span class="sdg-pct">68% alignment</span>
+        </div>
+        <div class="sdg-card sc3">
+          <div class="sdg-num">08</div>
+          <div class="sdg-title">Decent Work</div>
+          <p>Your career choices ripple into workplaces and communities around you.</p>
+          <div class="sdg-bar"><div class="sdg-fill sf3" style="--p:74%"></div></div>
+          <span class="sdg-pct">74% alignment</span>
+        </div>
+        <div class="sdg-card sc4">
+          <div class="sdg-num">10</div>
+          <div class="sdg-title">Reduced Inequalities</div>
+          <p>Mentoring others and sharing knowledge dissolves barriers others face.</p>
+          <div class="sdg-bar"><div class="sdg-fill sf4" style="--p:59%"></div></div>
+          <span class="sdg-pct">59% alignment</span>
+        </div>
+      </div>
+      <div class="sdg-footer">
+        <p>✦ Future You is built on the belief that personal growth and global progress are the same thing.</p>
+      </div>
+    </div>
+  </div>
+
+</main><!-- /main -->
+
+<script src="script.js"></script>
+</body>
+</html>
