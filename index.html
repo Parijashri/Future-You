@@ -1016,29 +1016,59 @@ textarea{resize:vertical;min-height:68px}
 /* ══════════════════════════════════════
    INTRO SEQUENCE — slow→fast→FUTURE YOU
 ══════════════════════════════════════ */
-const morphWords = [
-  'anyting',
+const morphWords=[
+  'YOU',
   'Overthinker',
-  '"I\'ll Start Tomorrow"',
-  'Dramebaaz',
-  'Main Character',
-  'Burnout Survivor',
-  'NPC (briefly)',
+  'Chulbul',
+  'Masaledaarr',
+  'Dramebaazz',
   'Delulu',
-  'Academic Weapon',
-  '"Trust The Process"',
-  'Recovering Perfectionist',
-  'Soft Launch',
-  'Chaos Coordinator',
-  'Side Quest',
-  'Character Development',
-  'Locked In',
+  'Vibey',
+  'Bindaas',
+  'Chaotic',
+  'Softie',
+  'Sunshine',
+  'Moonchild',
+  'Firecracker',
+  'Daydreamer',
+  'Moodie',
+  'Quirky',
+  'SavageLite',
+  'GoldenRetrieverEnergy',
+  'BlackCatEnergy',
+  'MainCharacter',
+  'PlotArmor',
+  'RomComCoded',
+  'Aesthetic',
+  'LowkeyChaos',
+  'HighkeyVibes',
+  'EmotionalSpicy',
+  'QuietStorm',
+  'ChaoticGood',
+  'SweetnSpicy',
+  'Zesty',
+  'UnhingedLite',
+  'GlowMode',
+  'DreamCoded',
+  'VibeFlipper',
+  'HeartStealer',
+  'Brainrot',
+  'SillyGoose',
+  'SoftChaos',
+  'MysteryBox',
+  'LimelightMagnet',
+  'IWillStartTomorrow',
+  'MainCharacterEnergy',
+  'LockedIn',
   'Unbothered',
-  'Plot Twist',
-  'Everything',
-  'FUTURE YOU'
-];
-
+  'SideQuest',
+  'CharacterDevelopment',
+  'ChaosCoordinator',
+  'RecoveringPerfectionist',
+  'AcademicWeapon',
+  'TrustTheProcess'
+  'Everything', 
+  'FUTURE YOU' ];
 const morphWordEl = document.getElementById('morphWord');
 const morphPrefixEl = document.getElementById('morphPrefix');
 const introTagline = document.getElementById('introTagline');
@@ -1267,53 +1297,80 @@ async function callClaude(prompt, systemPrompt) {
 
 /* ══ FUTURES ══ */
 const futureTemplates = {
-  thriving:{emoji:'🚀',type:'Thriving You',className:'thriving',
-    tagline:(u)=>`${u.name||'Explorer'} who said yes to everything that mattered.`,
-    tags:()=>['High Growth','Well-Rested','Strong Network','Main Character'],
+  thriving:{
+    type:'Thriving You',
+    className:'thriving',
+    tagline:(u)=>`${u.name||'Explorer'} who started choosing what actually mattered.`,
+    tags:()=>['High Growth','Rest Included','Strong Circle','Main Character Energy'],
     gainTemplate:(u)=>[
-      `Landed a role at a leading ${u.workEnv||'startup'} within 3 months of graduating`,
-      `Mastered ${(u.skills||['your key skills']).slice(0,3).join(', ')}`,
-      'Built a portfolio that opened doors without a single cold email',
-      'Maintained 7–8 hrs of sleep as a non-negotiable',
-      'Became a mentor within 2 years of starting'
+      `Landed a role at a leading ${u.workEnv||'startup'} faster than expected, but with surprising calm`,
+      `Actually mastered ${(u.skills||['your key skills']).slice(0,3).join(', ')}, not just consumed them`,
+      'Built a portfolio that quietly spoke louder than effort ever did',
+      'Sleep became non-negotiable — and life improved because of it',
+      'Became the person others now casually ask for guidance'
     ],
-    watchTemplate:()=>["Don't let ambition crowd out rest",'Guard your mornings','Give back early — it compounds']
+    watchTemplate:()=>[
+      'Don’t let doing well turn into constant overdoing',
+      'Protect your mornings — they shape everything else',
+      'Growth feels good, but don’t forget to live inside it'
+    ]
   },
-  comfortable:{emoji:'😌',type:'Comfortable You',className:'comfortable',
-    tagline:(u)=>`${u.name||'Explorer'} who played it smart and found stability.`,
-    tags:()=>['Steady Growth','Work-Life Balance','Content','Peace Era'],
+
+  comfortable:{
+    type:'Comfortable You',
+    className:'comfortable',
+    tagline:(u)=>`${u.name||'Explorer'} who chose peace without losing ambition.`,
+    tags:()=>['Steady Growth','Calm Stability','Soft Wins','Balanced Era'],
     gainTemplate:(u)=>[
-      `Secured a stable role in a reputable ${u.workEnv||'organization'}`,
-      'Found routines that work — not exciting, but sustainable',
-      'Built meaningful relationships at work and outside it',
-      'Avoided major health crises through moderate habits',
-      'Paid off debt, saved consistently, slept well'
+      `Found a stable role in a respected ${u.workEnv||'organization'}, with less chaos and more clarity`,
+      'Built routines that stopped resisting and started supporting',
+      'Work stopped draining energy and started fitting life',
+      'Relationships became steady, not performative',
+      'Life settled into “enough” — quietly peaceful, not loud but real'
     ],
-    watchTemplate:()=>['Comfort can become complacency — audit growth yearly','Ambition and contentment can coexist, always','Your network needs investment even when things feel fine']
+    watchTemplate:()=>[
+      'Comfort can slowly turn into autopilot if left unchecked',
+      'Even stable phases need small evolutions',
+      'Stay close to curiosity, not just routine'
+    ]
   },
-  burnout:{emoji:'🔥',type:'Burned Out You',className:'burnout',
-    tagline:(u)=>`${u.name||'Explorer'} who ran at full speed with no finish line.`,
-    tags:()=>['High Achiever','Low Energy','Rebuilding Arc','The Reset'],
+
+  burnout:{
+    type:'Burned Out You',
+    className:'burnout',
+    tagline:(u)=>`${u.name||'Explorer'} who learned limits the hard way.`,
+    tags:()=>['Reset Arc','Heavy Lessons','Rebuild Mode','Realignment'],
     gainTemplate:(u)=>[
-      'Impressive titles early — but at a steep personal cost',
-      `Deep expertise in ${(u.skills||['multiple areas']).slice(0,2).join(' and ')}`,
-      'Learned what boundaries feel like — from violating them',
-      'Developed deep empathy for mental health struggles',
-      'Now rebuilding with far more self-awareness than before'
+      'Early wins came fast, but so did the cost',
+      `Deep expertise in ${(u.skills||['multiple areas']).slice(0,2).join(' and ')}, built under pressure`,
+      'Eventually learned the difference between ability and sustainability',
+      'Discovered boundaries not through theory, but exhaustion',
+      'Rebuilt life slower, but with far more awareness'
     ],
-    watchTemplate:()=>["Start protecting your energy before you have none left",'Sleep is the highest-leverage habit you have right now',"Learn to say no — it's a full sentence"]
+    watchTemplate:()=>[
+      'Tiredness is not laziness — don’t mix them up',
+      'Rest is maintenance, not reward',
+      'Saying no earlier would’ve saved a lot of repair work'
+    ]
   },
-  unexpected:{emoji:'🎲',type:'Unexpected You',className:'unexpected',
-    tagline:(u)=>`${u.name||'Explorer'} who followed a thread and ended up extraordinary.`,
-    tags:()=>['Plot Twist','Rare Path','Wildly Alive','NPC to MC pipeline'],
+
+  unexpected:{
+    type:'Unexpected You',
+    className:'unexpected',
+    tagline:(u)=>`${u.name||'Explorer'} who stopped following plans and started following signals.`,
+    tags:()=>['Plot Twist Life','Unmapped Path','Surprise Wins','Main Character Shift'],
     gainTemplate:(u)=>[
-      `Started as a ${u.dreamRole||'professional'} — ended up building something no one had a name for`,
-      'A random conversation changed your trajectory completely',
-      'Collaborated with people you once only admired online',
-      'Discovered a second passion that became your livelihood',
-      'Broke every mold that was built for you'
+      `Started as a ${u.dreamRole||'planned path'} — ended up somewhere completely unplanned (in the best way)`,
+      'One small yes quietly changed the direction of everything',
+      'People who were never on the plan became central to the story',
+      'A side curiosity slowly turned into a main identity',
+      'Life stopped matching expectations and started making its own sense'
     ],
-    watchTemplate:()=>['Stay curious — the unexpected life rewards open eyes','Document everything — your story will matter to others','Build your foundations now so the detours don\'t break you']
+    watchTemplate:()=>[
+      'Not everything needs a plan, but everything needs awareness',
+      'Curiosity often knows the way before clarity does',
+      'Small detours are usually disguised turning points'
+    ]
   }
 };
 
@@ -1355,14 +1412,30 @@ async function generateFutures(){
   const prompt=(key,t)=>`
 User: ${userData.name||'Explorer'}, age ${userData.age||20}, studying ${userData.degree||'college'}, year ${userData.year||2}.
 Skills: ${(userData.skills||[]).join(', ')||'general skills'}.
-Dream role: ${userData.dreamRole||'undecided'}. Environment: ${userData.workEnv||'startup'}. Motivation: ${userData.motivation||'impact'}.
-Sleep: ${userData.sleep||7}h. Screen time: ${userData.screen||3}h/day. Projects: ${userData.projects||'weekly'}. Exercise: ${userData.exercise||'sometimes'}.
-Internship: ${userData.intern||'applying'}. Portfolio: ${userData.portfolio||'building'}. Network: ${userData.network||'moderate'}.
-Ambitions: "${userData.ambitions||'build something meaningful'}". Fear: ${userData.fear||'stuck'}. Superpower wanted: ${userData.superpower||'focus'}.
+Dream role: ${userData.dreamRole||'undecided'}. Environment: ${userData.workEnv||'startup vibe ya thoda unpredictable flow'}.
+Motivation: ${userData.motivation||'impact aur inner peace ka mix'}.
+Sleep: ${userData.sleep||7}h. Screen time: ${userData.screen||3}h/day. Projects: ${userData.projects||'gradual, sometimes inconsistent progress'}. Exercise: ${userData.exercise||'occasional discipline'}.
+Internship: ${userData.intern||'process mein hai'}.
+Portfolio: ${userData.portfolio||'gradually shaping up, still evolving'}.
+Network: ${userData.network||'selective, limited but meaningful connections'}.
+Ambitions: "${userData.ambitions||'something meaningful banana, clarity abhi evolving hai'}".
+Fear: ${userData.fear||'same loop mein atak jana, progress na ho pana'}.
+Superpower wanted: ${userData.superpower||'consistent focus, jo kabhi kabhi bhatak jata hai'}.
 
-Write a 2-sentence vivid description (NOT a letter, just a description) of the "${t.type}" scenario for this person. 
-Make it feel personal, slightly poetic, and a tiny bit funny/self-aware. No clichés. Second person ("You"). Max 60 words.`;
+Scene:
+Create a 2-sentence vivid snapshot of the "${t.type}" version of their life.
 
+Tone:
+- Natural, polished Hinglish (not slang-heavy, not meme-style)
+- Feels like an inner voice that is calm, aware, and slightly observant
+- Light emotional warmth with subtle “haan, ye phase jaana-pehchana lagta hai” energy
+- A touch of poetic realism — everyday life, but seen with clarity
+- No motivational framing, no preaching, no clichés
+- “You” perspective, like a quiet reflection from the future
+
+Limit:
+Within 60 words, crisp but emotionally alive
+`;
   const keys = Object.keys(futureTemplates);
   for(const key of keys){
     const t=futureTemplates[key];
@@ -1427,13 +1500,13 @@ function closeFutureDetail(){
   document.getElementById('futuresGrid').style.display='grid';
 }
 
-/* ══ LETTERS ══ */
 const letterMeta=[
-  {emoji:'🚀',label:'Thriving You',key:'thriving'},
-  {emoji:'😌',label:'Comfortable You',key:'comfortable'},
-  {emoji:'🔥',label:'Burned Out You',key:'burnout'},
-  {emoji:'🎲',label:'Unexpected You',key:'unexpected'},
+  {label:'Thriving You (Main Character Energy 🔥)',key:'thriving'},
+  {label:'Comfort Zone You (Thoda Chill, Thoda Nakhrila 😌)',key:'comfortable'},
+  {label:'Burnout You (Full Thakela Mode, Low Battery 🪫)',key:'burnout'},
+  {label:'Unexpected You (Plot Twist Wala Scene 🎲)',key:'unexpected'},
 ];
+
 let letterCache={};
 let activeLetterIdx=0;
 
@@ -1468,14 +1541,44 @@ async function showLetter(idx){
 
   container.innerHTML=`<div style="color:var(--ink-muted);font-size:0.88rem;padding:1rem 0;display:flex;align-items:center;gap:0.6rem"><div class="ai-dots"><span></span><span></span><span></span></div> ${l.label} is writing to you...</div>`;
 
-  const t=futureTemplates[l.key];
-  const prompt=`Write a personal letter from "${l.label}" (5 years in the future) to ${userData.name||'them'} right now.
-Context: ${userData.name||'Explorer'}, ${userData.age||20}yrs, ${userData.degree||'college'}, wants to be: ${userData.dreamRole||'undecided'}.
-Skills: ${(userData.skills||[]).join(', ')||'various skills'}. Fear: ${userData.fear||'stuck'}. Ambitions: "${userData.ambitions||'build something meaningful'}".
-This is the "${l.label}" scenario: ${t.gainTemplate(userData)[0]}.
+  const t = futureTemplates[l.key];
 
-Write a 180-220 word letter. Personal, warm, a tiny bit self-aware/funny. Second person ("I'm you, from 2030"). Start with "Hey ${userData.name||'you'}." Include one specific detail about their field/skills. End with a short sign-off.
-No hashtags. No corporate speak. No "journey". No "pivot". Sound like a real person.`;
+const prompt = `
+You are ${l.label} — a slightly self-aware future version of ${userData.name || "this person"}, writing from about 5 years ahead.
+
+You’re not here to teach or advise. You’re just… remembering them. Talking like someone who’s been through it and finds their past self kind of endearing, sometimes funny, sometimes painfully relatable.
+
+Context:
+Name: ${userData.name || "Explorer"}
+Age: ${userData.age || 20}
+Background: ${userData.degree || "college life"}
+Current direction: ${userData.dreamRole || "still figuring things out"}
+Skills they’re exploring: ${(userData.skills || []).join(", ") || "a bunch of experiments"}
+What they worry about: ${userData.fear || "feeling stuck sometimes"}
+What they want: "${userData.ambitions || "build something meaningful"}"
+
+Situation you’re responding to (${l.label}):
+${t.gainTemplate(userData)[0]}
+
+Tone of writing:
+- Feels like a late-night message from future self who knows too much
+- Light, human, a bit witty in a “I’ve seen this phase before” way
+- Not motivational, not preachy, not structured advice
+- More like emotional memory than guidance
+
+It might casually include:
+- one real moment they’d recognize from their life (messy nights, small wins, overthinking loops, random breakthroughs)
+- one specific detail from their skills or interests so it feels personal, not generic
+
+Length:
+Around 180–220 words, but it can breathe naturally if it feels right.
+
+Start:
+"Hey ${userData.name || "you"}."
+
+Ending:
+Just drift out naturally, like a message that didn’t need a sign-off but has one anyway — something simple like a name, or “— you, from ahead”, or nothing too formal.
+`;
 
   const text=await callClaude(prompt);
   letterCache[l.key]=text;
@@ -1510,17 +1613,16 @@ function generateMeters(scores){
   const growth=Math.min(100,Math.round(scores.careerMomentum*0.9+scores.creativity*0.1));
   const balance=Math.min(100,Math.round((scores.wellbeing+scores.productivity)/2));
 
-  const meters=[
-    {name:'⚡ Energy',score:energy,cls:'mf-energy',
-      desc:energy>70?'Fueled up and actually running strong. This is your power era.':energy>45?'Managing, but more rest would unlock your full arc.':'Energy reserves critically low. Sleep is not optional, bestie.'},
-    {name:'🔥 Stress',score:stress,cls:'mf-stress',
-      desc:stress<40?'Stress levels healthy — you are giving calm in a storm.':stress<65?'Moderate stress detected. Screen time check?':'High stress era. You need recovery rituals and you need them now.'},
-    {name:'🌱 Growth',score:growth,cls:'mf-growth',
-      desc:growth>70?'On a strong growth trajectory. The compound interest is real.':growth>45?'Steady growth — a few consistent actions will accelerate your arc.':'Growth is slow. More intentional action is needed, not just vibes.'},
-    {name:'⚖️ Balance',score:balance,cls:'mf-balance',
-      desc:balance>70?'Great life balance! Building something sustainable here.':balance>45?'Balance okay but could be stronger. What is taking too much?':'Imbalance era detected. Something is getting too much — or too little.'}
-  ];
-
+const meters=[
+  {name:'Energy',score:energy,cls:'mf-energy',
+    desc:energy>70?'You’re not tired, you’re just on airplane mode OFF and main character buffering at 120fps.':energy>45?'You’re functioning but emotionally on low battery saver + 3% optimism.':'Bro your energy is on “do not disturb” and it’s winning.'},
+  {name:'Stress',score:stress,cls:'mf-stress',
+    desc:stress<40?'Stress said “I’ll come later” and actually kept its promise. Rare W.':stress<65?'Stress is lowkey sitting in the corner like “notice me but don’t panic”.':'Stress has opened 47 tabs in your brain and none of them are responding.'},
+  {name:'Growth',score:growth,cls:'mf-growth',
+    desc:growth>70?'You’re evolving so fast even your past self is like “bhai update toh de deta”.':growth>45?'Growth is happening… silently… like background app refresh and mild self-respect increase.':'Growth is stuck on loading but at least it didn’t crash.'},
+  {name:'Balance',score:balance,cls:'mf-balance',
+    desc:balance>70?'Life balance is giving “sorted playlist, clean room, emotionally stable arc”.':balance>45?'Balance is okay but slightly chaotic like a half-charged phone and half-planned life.':'Balance left the chat without leaving a reason.'}
+];
   grid.innerHTML=meters.map(m=>`
     <div class="meter-card">
       <div class="meter-header">
@@ -1547,16 +1649,27 @@ function triggerMeters(){
 
 /* ══ QUESTS ══ */
 const allQuests=[
-  {icon:'📩',title:'Apply to 3 internships',desc:'Reach out to 3 companies that excite you. Even dream ones.',xp:'+50 XP',xpVal:50,key:'q1'},
-  {icon:'🌙',title:'Sleep before midnight twice',desc:'Your future self will thank you. Twice. No debate.',xp:'+30 XP',xpVal:30,key:'q2'},
-  {icon:'🔗',title:'Update your LinkedIn/portfolio',desc:'Add your latest project, skill, or experience. Ghost mode = NPC mode.',xp:'+20 XP',xpVal:20,key:'q3'},
-  {icon:'🔨',title:'Ship one project update',desc:'Push code, add a feature, or write a case study section.',xp:'+60 XP',xpVal:60,key:'q4'},
-  {icon:'📚',title:'Learn one new thing deeply',desc:'Pick one topic and go 30 minutes deeper than usual.',xp:'+25 XP',xpVal:25,key:'q5'},
-  {icon:'🤝',title:'Have a real conversation',desc:'Reach out to someone whose work you admire. One genuine question.',xp:'+40 XP',xpVal:40,key:'q6'},
-  {icon:'🏃',title:'Move your body for 20 mins',desc:'Walk, stretch, dance — it all counts. Just move.',xp:'+20 XP',xpVal:20,key:'q7'},
-  {icon:'✍️',title:'Write for 15 minutes',desc:'Journal, blog post, thoughts. Writing is thinking made visible.',xp:'+15 XP',xpVal:15,key:'q8'}
+{title:"Reach out to someone new",desc:"Start a conversation you’ve been postponing. No agenda required.",xp:40,difficulty:"medium",category:"connection",key:"q1"},
+{title:"Stabilize your sleep rhythm",desc:"Sleep before midnight and wake up without friction, twice this week.",xp:30,difficulty:"easy",category:"health",key:"q2"},
+{title:"Learn something unfamiliar",desc:"Spend 30 minutes on a topic you’re curious about but not required to know.",xp:25,difficulty:"easy",category:"growth",key:"q3"},
+{title:"Clear one area of disorder",desc:"Declutter a physical or digital space that’s been ignored.",xp:20,difficulty:"easy",category:"environment",key:"q4"},
+{title:"Move with intention",desc:"Walk, stretch, or exercise for at least 20 minutes without distraction.",xp:20,difficulty:"easy",category:"health",key:"q5"},
+{title:"Complete one avoided task",desc:"Do something you’ve been delaying. Imperfect execution is acceptable.",xp:60,difficulty:"hard",category:"discipline",key:"q6"},
+{title:"Unfiltered writing session",desc:"Write continuously for 10 minutes without editing or filtering thoughts.",xp:15,difficulty:"easy",category:"mind",key:"q7"},
+{title:"Replace one habitual distraction",desc:"Identify and reduce one recurring low-value habit.",xp:50,difficulty:"medium",category:"discipline",key:"q8"},
+{title:"Screen-free hour",desc:"Spend one uninterrupted hour without digital input.",xp:35,difficulty:"medium",category:"mind",key:"q9"},
+{title:"Deep listening session",desc:"Engage with music, speech, or silence without multitasking.",xp:20,difficulty:"easy",category:"mind",key:"q10"},
+{title:"Self-inquiry reflection",desc:"Identify what you are currently avoiding and why.",xp:25,difficulty:"medium",category:"mind",key:"q11"},
+{title:"Explore a new environment",desc:"Visit a place you have not been to before, even nearby.",xp:30,difficulty:"easy",category:"exploration",key:"q12"},
+{title:"One act of quiet assistance",desc:"Help someone without expectation or visibility.",xp:20,difficulty:"easy",category:"connection",key:"q13"},
+{title:"Organize digital clutter",desc:"Clean files, inbox, or workspace to reduce cognitive load.",xp:20,difficulty:"easy",category:"environment",key:"q14"},
+{title:"Begin something you are not good at",desc:"Engage in a skill without concern for performance.",xp:45,difficulty:"medium",category:"growth",key:"q15"},
+{title:"Step outside comfort patterns",desc:"Do something mildly uncomfortable with intention.",xp:60,difficulty:"hard",category:"discipline",key:"q16"},
+{title:"Record a meaningful moment",desc:"Capture a thought or experience you would otherwise forget.",xp:15,difficulty:"easy",category:"mind",key:"q17"},
+{title:"Eat one meal without distraction",desc:"No screens. No multitasking. Just presence.",xp:20,difficulty:"easy",category:"health",key:"q18"},
+{title:"Plan a future action",desc:"Make a small decision that affects the next 7–30 days.",xp:30,difficulty:"medium",category:"direction",key:"q19"},
+{title:"Five minutes of silence",desc:"Sit without input. Observe thought without reaction.",xp:25,difficulty:"easy",category:"mind",key:"q20"}
 ];
-
 function updateXP(){
   const total=allQuests.reduce((sum,q)=>sum+(questCompletion[q.key]?q.xpVal:0),0);
   const maxXP=allQuests.reduce((sum,q)=>sum+q.xpVal,0);
@@ -1595,30 +1708,44 @@ function toggleQuest(key,card){
 
 /* ══ CONSTELLATION ══ */
 const skillPaths={
-  'HTML/CSS':['JavaScript','UI/UX Design','React','Graphic Design'],
-  'JavaScript':['React','Python','Problem Solving','Product Management'],
-  'Python':['Data Analysis','Machine Learning','Problem Solving'],
-  'React':['UI/UX Design','Product Management','JavaScript'],
-  'Data Analysis':['Machine Learning','SQL','Finance'],
-  'Machine Learning':['Python','Data Analysis'],
-  'UI/UX Design':['Graphic Design','Product Management','Illustration'],
-  'Writing':['Communication','Content Creation','Marketing'],
-  'Communication':['Leadership','Public Speaking','Teamwork'],
-  'Graphic Design':['Illustration','Content Creation','UI/UX Design'],
-  'Marketing':['Content Creation','Communication','Entrepreneurship'],
-  'Product Management':['Communication','Leadership','Entrepreneurship'],
-  'Entrepreneurship':['Marketing','Leadership','Finance'],
-  'Leadership':['Communication','Teamwork','Public Speaking'],
-  'SQL':['Data Analysis','Finance'],
-  'Finance':['SQL','Entrepreneurship'],
-  'Content Creation':['Writing','Graphic Design','Marketing'],
-  'Video Editing':['Content Creation','Graphic Design'],
-  'Photography':['Graphic Design','Content Creation'],
-  'Illustration':['Graphic Design','UI/UX Design'],
-  'Sales':['Communication','Marketing'],
-  'Teamwork':['Communication','Leadership'],
-  'Public Speaking':['Communication','Leadership'],
-  'Problem Solving':['Python','Data Analysis','Product Management']
+"Making Someone Smile":["Kindness","Humor","Social Confidence","Empathy"],
+"Random Complimenting a Stranger":["Kindness","Social Confidence","Awareness"],
+"Listening to 3AM Rant":["Listening","Empathy","Patience","Friendship"],
+"Comforting a Friend":["Empathy","Emotional Support","Listening"],
+"Kindness":["Empathy","Emotional Support","Friendship"],
+"Listening":["Empathy","Patience","Friendship","Communication"],
+"Friendship":["Trust","Listening","Shared Experiences"],
+"Trust":["Friendship","Emotional Support","Boundaries"],
+"Emotional Support":["Listening","Empathy","Kindness"],
+"Social Confidence":["Communication","Humor","Self Expression"],
+"Humor":["Social Confidence","Creativity","Expression"],
+"Self Expression":["Creativity","Confidence","Writing"],
+"Confidence":["Self Expression","Social Confidence","Presence"],
+"Cooking a Basic Meal":["Patience","Creativity","Self Care"],
+"Cooking Something New":["Creativity","Experimentation","Patience"],
+"Baking Something for Someone":["Care","Creativity","Kindness"],
+"Making Tea/Coffee for Someone":["Care","Kindness","Routine"],
+"Walking Without Destination":["Mindfulness","Curiosity","Awareness"],
+"Exploring a New Place":["Curiosity","Confidence","Awareness"],
+"Noticing Small Details":["Mindfulness","Awareness","Presence"],
+"Writing Late Night Thoughts":["Expression","Self Awareness","Creativity"],
+"Journaling Feelings":["Self Awareness","Reflection","Emotional Clarity"],
+"Overthinking Survival":["Self Awareness","Reflection","Calmness"],
+"Helping Someone Without Being Asked":["Kindness","Awareness","Empathy"],
+"Sharing Food":["Kindness","Friendship","Care"],
+"Checking on a Friend":["Friendship","Care","Empathy"],
+"Handling Awkward Situations":["Confidence","Adaptability","Humor"],
+"Recovering from Embarrassment":["Confidence","Self Acceptance","Humor"],
+"Doing Nothing Guilt-Free":["Calmness","Self Acceptance","Mindfulness"],
+"Taking a Slow Morning":["Self Care","Mindfulness","Routine"],
+"Fixing a Messy Room":["Self Care","Discipline","Clarity"],
+"Organizing Your Life Corner":["Self Care","Focus","Clarity"],
+"Trying Something You’re Bad At":["Courage","Creativity","Self Acceptance"],
+"Starting Without Being Ready":["Courage","Confidence","Action"],
+"Apologizing Sincerely":["Emotional Intelligence","Humility","Communication"],
+"Saying No Politely":["Boundaries","Confidence","Self Respect"],
+"Late Night Deep Talks":["Friendship","Trust","Vulnerability"],
+"Sharing a Secret":["Trust","Friendship","Vulnerability"]
 };
 
 let conStars=[];let conHover=null;let conAnimId=null;
