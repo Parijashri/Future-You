@@ -6,55 +6,61 @@
 <title>Future You</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=Caveat:wght@500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,700;0,9..144,900;1,9..144,700;1,9..144,900&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=Caveat:wght@500;700&display=swap" rel="stylesheet">
 <style>
+/* ─────────────────────────────────────────
+   PALETTE:
+   Primary Dark  → #003631  (deep forest green)
+   Primary Light → #FFEDA8  (butter yellow)
+   Support tones derived from these two anchors
+───────────────────────────────────────── */
 :root {
-  --cream: #FAF6EE;
-  --cream-dark: #F2EBD9;
-  --sage: #8FAF8A;
-  --sage-light: #D6E8D2;
-  --sage-deep: #4A7A44;
-  --rose: #E8B4B8;
-  --rose-light: #F5E0E2;
-  --rose-deep: #B05060;
-  --taupe: #C4A882;
-  --taupe-light: #EDE0CC;
-  --taupe-deep: #8B6B3D;
-  --terra: #D4845A;
-  --terra-light: #F4D5C0;
-  --terra-deep: #9B4F2A;
-  --ink: #2D2420;
-  --ink-mid: #5C4A3D;
-  --ink-muted: #9B8878;
-  --border: rgba(196,168,130,0.25);
-  --border-strong: rgba(143,175,138,0.4);
+  /* ── New core palette ── */
+  --bg:         #FFEDA8;        /* butter yellow — main background */
+  --bg-deep:    #F5DF90;        /* slightly richer yellow */
+  --bg-muted:   #FFF8D6;        /* near-white yellow for surfaces */
+  --green:      #003631;        /* dark forest green */
+  --green-mid:  #0A5048;        /* mid green for hover states */
+  --green-light:#1A6E5E;        /* lighter green accent */
+  --green-pale: #C8DDD8;        /* very pale green tint */
+  --green-wash: rgba(0,54,49,0.07);
+  --yellow-deep:#E8C84A;        /* golden accent */
+  --yellow-warm:#D4A800;        /* deeper gold for text on green */
+  --ink:        #003631;        /* headings / strong text */
+  --ink-mid:    #1A4A42;        /* body text */
+  --ink-muted:  #4A7A70;        /* muted / secondary text */
+  --border:     rgba(0,54,49,0.14);
+  --border-strong: rgba(0,54,49,0.28);
 
-  --font-display: 'Playfair Display', serif;
-  --font-body: 'DM Sans', sans-serif;
-  --font-hand: 'Caveat', cursive;
+  /* ── Typography ── */
+  --font-display: 'Fraunces', serif;   /* replaces Playfair — more organic, heavier */
+  --font-body:    'DM Sans', sans-serif;
+  --font-hand:    'Caveat', cursive;
 
-  --shadow-sm: 0 2px 12px rgba(45,36,32,0.07);
-  --shadow-md: 0 8px 32px rgba(45,36,32,0.11);
-  --shadow-lg: 0 20px 60px rgba(45,36,32,0.14);
+  /* ── Shadows (now green-toned) ── */
+  --shadow-sm: 0 2px 12px rgba(0,54,49,0.08);
+  --shadow-md: 0 8px 32px rgba(0,54,49,0.13);
+  --shadow-lg: 0 20px 60px rgba(0,54,49,0.18);
 
+  /* ── Radii ── */
   --r-sm: 12px;
   --r-md: 20px;
   --r-lg: 32px;
 
-  --ease: all 0.3s cubic-bezier(0.4,0,0.2,1);
+  --ease:   all 0.3s cubic-bezier(0.4,0,0.2,1);
   --spring: all 0.5s cubic-bezier(0.34,1.56,0.64,1);
 }
 
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth;font-size:16px}
-body{font-family:var(--font-body);background:var(--cream);color:var(--ink);overflow:hidden;height:100vh;width:100vw}
+body{font-family:var(--font-body);background:var(--bg);color:var(--ink);overflow:hidden;height:100vh;width:100vw}
 button{border:none;background:none;font-family:inherit;cursor:pointer}
 a{color:inherit;text-decoration:none}
 
 /* ─── INTRO ─── */
 #intro-scene{
   position:fixed;inset:0;
-  background:var(--cream);
+  background:var(--green);
   display:flex;align-items:center;justify-content:center;
   flex-direction:column;gap:0;
   z-index:9000;overflow:hidden;
@@ -65,9 +71,9 @@ a{color:inherit;text-decoration:none}
 .intro-bg-layer{
   position:absolute;inset:0;pointer-events:none;
   background:
-    radial-gradient(ellipse 60% 50% at 20% 30%, rgba(143,175,138,0.18) 0%, transparent 70%),
-    radial-gradient(ellipse 50% 60% at 80% 70%, rgba(232,180,184,0.2) 0%, transparent 70%),
-    radial-gradient(ellipse 40% 40% at 50% 50%, rgba(196,168,130,0.12) 0%, transparent 60%);
+    radial-gradient(ellipse 60% 50% at 20% 30%, rgba(255,237,168,0.10) 0%, transparent 70%),
+    radial-gradient(ellipse 50% 60% at 80% 70%, rgba(255,237,168,0.07) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 40% at 50% 50%, rgba(255,248,214,0.06) 0%, transparent 60%);
 }
 
 .intro-particles{position:absolute;inset:0;pointer-events:none;overflow:hidden}
@@ -94,7 +100,7 @@ a{color:inherit;text-decoration:none}
   font-family:var(--font-body);
   font-size:clamp(0.75rem,2vw,1rem);
   font-weight:300;
-  color:var(--ink-muted);
+  color:rgba(255,237,168,0.55);
   letter-spacing:0.22em;
   text-transform:uppercase;
   margin-bottom:0.75rem;
@@ -106,7 +112,7 @@ a{color:inherit;text-decoration:none}
   font-family:var(--font-display);
   font-size:clamp(3.5rem,10vw,8rem);
   font-weight:900;
-  color:var(--ink);
+  color:var(--bg);
   line-height:1;
   letter-spacing:-0.02em;
   min-height:1.1em;
@@ -117,14 +123,14 @@ a{color:inherit;text-decoration:none}
 .morph-word.out{opacity:0;transform:translateY(10px) scale(0.97)}
 .morph-word.in{opacity:1;transform:none}
 .morph-word .final-text{
-  background:linear-gradient(135deg, var(--sage-deep) 0%, var(--terra-deep) 50%, var(--rose-deep) 100%);
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  color:var(--bg);
+  font-style:italic;
 }
 
 .intro-tagline{
   font-family:var(--font-hand);
   font-size:clamp(1.1rem,2.5vw,1.7rem);
-  color:var(--ink-mid);
+  color:rgba(255,237,168,0.7);
   margin-top:1.25rem;
   letter-spacing:0.01em;
   opacity:0;
@@ -136,10 +142,10 @@ a{color:inherit;text-decoration:none}
 .intro-enter-btn{
   margin-top:2.5rem;
   padding:1rem 2.75rem;
-  background:var(--ink);
-  color:var(--cream);
+  background:var(--bg);
+  color:var(--green);
   font-family:var(--font-body);
-  font-weight:500;
+  font-weight:600;
   font-size:0.95rem;
   letter-spacing:0.04em;
   border-radius:100px;
@@ -149,7 +155,7 @@ a{color:inherit;text-decoration:none}
   position:relative;z-index:1;
 }
 .intro-enter-btn.visible{opacity:1;transform:none}
-.intro-enter-btn:hover{background:var(--sage-deep);box-shadow:0 6px 24px rgba(74,122,68,0.3)}
+.intro-enter-btn:hover{background:#FFFBE0;box-shadow:0 6px 28px rgba(255,237,168,0.3)}
 
 /* ─── APP ─── */
 #app{display:flex;height:100vh;width:100vw;opacity:0;transition:opacity 0.7s ease;overflow:hidden}
@@ -158,16 +164,15 @@ a{color:inherit;text-decoration:none}
 /* ─── SIDEBAR ─── */
 .sidebar{
   width:228px;flex-shrink:0;
-  background:rgba(250,246,238,0.95);
-  backdrop-filter:blur(20px);
-  border-right:1px solid var(--border);
+  background:var(--green);
+  border-right:1px solid rgba(255,237,168,0.12);
   display:flex;flex-direction:column;
   padding:1.5rem 1rem;z-index:100;
 }
 
 .sidebar-logo{display:flex;align-items:center;gap:0.65rem;padding:0.25rem 0.75rem;margin-bottom:2.25rem}
 .logo-leaf{font-size:1.25rem}
-.logo-text{font-family:var(--font-display);font-size:1.05rem;font-weight:700;color:var(--ink);letter-spacing:-0.01em}
+.logo-text{font-family:var(--font-display);font-size:1.15rem;font-weight:900;color:var(--bg);letter-spacing:-0.01em;font-style:italic}
 
 .sidebar-nav{display:flex;flex-direction:column;gap:0.2rem;flex:1}
 .nav-item{
@@ -175,61 +180,61 @@ a{color:inherit;text-decoration:none}
   padding:0.65rem 0.875rem;
   border-radius:var(--r-sm);
   font-size:0.82rem;font-weight:400;
-  color:var(--ink-muted);
+  color:rgba(255,237,168,0.6);
   transition:var(--ease);position:relative;
   text-align:left;width:100%;line-height:1.3;
 }
-.nav-item:hover{background:var(--sage-light);color:var(--sage-deep)}
-.nav-item.active{background:var(--sage-light);color:var(--sage-deep);font-weight:500}
+.nav-item:hover{background:rgba(255,237,168,0.12);color:var(--bg)}
+.nav-item.active{background:rgba(255,237,168,0.15);color:var(--bg);font-weight:500}
 .nav-item.active::before{
   content:'';position:absolute;left:0;top:20%;bottom:20%;
-  width:2.5px;background:var(--sage-deep);border-radius:0 4px 4px 0;
+  width:2.5px;background:var(--bg);border-radius:0 4px 4px 0;
 }
 .nav-icon{font-size:0.9rem;flex-shrink:0;width:18px;text-align:center}
 .nav-label{flex:1}
 .nav-badge{
-  background:var(--rose-deep);color:white;font-size:0.6rem;font-weight:600;
+  background:var(--bg);color:var(--green);font-size:0.6rem;font-weight:700;
   padding:0.12rem 0.4rem;border-radius:100px;
 }
 
-.sidebar-footer{padding-top:1rem;border-top:1px solid var(--border)}
-.sidebar-user{display:flex;align-items:center;gap:0.7rem;padding:0.6rem 0.75rem;border-radius:var(--r-sm);background:var(--cream-dark)}
+.sidebar-footer{padding-top:1rem;border-top:1px solid rgba(255,237,168,0.12)}
+.sidebar-user{display:flex;align-items:center;gap:0.7rem;padding:0.6rem 0.75rem;border-radius:var(--r-sm);background:rgba(255,237,168,0.08)}
 .user-avatar{
   width:30px;height:30px;border-radius:50%;
-  background:linear-gradient(135deg,var(--sage),var(--rose));
+  background:var(--bg);
   display:flex;align-items:center;justify-content:center;
-  font-size:0.8rem;font-weight:600;color:white;flex-shrink:0;
+  font-size:0.8rem;font-weight:700;color:var(--green);flex-shrink:0;
 }
-.user-name{font-size:0.78rem;font-weight:500;color:var(--ink)}
-.user-tag{font-size:0.68rem;color:var(--ink-muted)}
+.user-name{font-size:0.78rem;font-weight:500;color:var(--bg)}
+.user-tag{font-size:0.68rem;color:rgba(255,237,168,0.5)}
 
 /* ─── MOBILE ─── */
 .mobile-bar{
   display:none;position:fixed;top:0;left:0;right:0;z-index:500;
-  background:rgba(250,246,238,0.95);backdrop-filter:blur(20px);
-  border-bottom:1px solid var(--border);
+  background:var(--green);
+  border-bottom:1px solid rgba(255,237,168,0.15);
   padding:0.875rem 1.25rem;
   align-items:center;justify-content:space-between;
 }
-.mobile-logo{font-family:var(--font-display);font-size:0.95rem;font-weight:700;display:flex;align-items:center;gap:0.4rem;color:var(--ink)}
-.mobile-menu-btn{font-size:1.3rem;color:var(--ink-mid);min-width:44px;min-height:44px;display:flex;align-items:center;justify-content:center}
+.mobile-logo{font-family:var(--font-display);font-size:1rem;font-weight:900;font-style:italic;display:flex;align-items:center;gap:0.4rem;color:var(--bg)}
+.mobile-menu-btn{font-size:1.3rem;color:var(--bg);min-width:44px;min-height:44px;display:flex;align-items:center;justify-content:center}
 .mobile-nav{
   position:fixed;top:54px;left:0;right:0;z-index:499;
-  background:rgba(250,246,238,0.98);backdrop-filter:blur(20px);
-  border-bottom:1px solid var(--border);padding:0.6rem;
+  background:var(--green);
+  border-bottom:1px solid rgba(255,237,168,0.15);padding:0.6rem;
   display:flex;flex-direction:column;gap:0.2rem;
 }
 .mobile-nav.hidden{display:none}
 .mnav-item{
   display:flex;align-items:center;gap:0.7rem;
   padding:0.8rem 1rem;border-radius:var(--r-sm);
-  font-size:0.88rem;color:var(--ink-mid);text-align:left;min-height:44px;
+  font-size:0.88rem;color:rgba(255,237,168,0.7);text-align:left;min-height:44px;
   transition:var(--ease);
 }
-.mnav-item:hover,.mnav-item.active{background:var(--sage-light);color:var(--sage-deep)}
+.mnav-item:hover,.mnav-item.active{background:rgba(255,237,168,0.12);color:var(--bg)}
 
 /* ─── MAIN ─── */
-.main{flex:1;overflow:hidden;position:relative;background:var(--cream)}
+.main{flex:1;overflow:hidden;position:relative;background:var(--bg)}
 
 .page{
   position:absolute;inset:0;overflow-y:auto;overflow-x:hidden;
@@ -241,27 +246,28 @@ a{color:inherit;text-decoration:none}
 /* ─── HOME ─── */
 #page-home{
   display:flex;align-items:center;justify-content:center;
-  background:linear-gradient(145deg, var(--cream) 0%, var(--cream-dark) 40%, var(--sage-light) 100%);
+  background:var(--bg);
+  position:relative;
 }
 .home-deco{position:absolute;inset:0;pointer-events:none;overflow:hidden}
 .deco-blob{
-  position:absolute;border-radius:50%;filter:blur(80px);opacity:0.22;
+  position:absolute;border-radius:50%;filter:blur(90px);opacity:0.18;
   animation:blobDrift 12s ease-in-out infinite;
 }
-.db1{width:500px;height:500px;background:var(--sage);top:-10%;left:-8%;animation-delay:0s}
-.db2{width:380px;height:380px;background:var(--rose);bottom:-5%;right:-5%;animation-delay:-5s}
-.db3{width:280px;height:280px;background:var(--taupe);top:35%;right:15%;animation-delay:-8s}
+.db1{width:500px;height:500px;background:var(--green);top:-10%;left:-8%;animation-delay:0s}
+.db2{width:380px;height:380px;background:var(--yellow-deep);bottom:-5%;right:-5%;animation-delay:-5s;opacity:0.25}
+.db3{width:280px;height:280px;background:var(--green-mid);top:35%;right:15%;animation-delay:-8s}
 @keyframes blobDrift{0%,100%{transform:translate(0,0)}50%{transform:translate(20px,-18px)}}
 
 .hero-content{position:relative;z-index:1;text-align:center;padding:clamp(1rem,4vw,3rem);max-width:700px;width:100%}
 .hero-eyebrow{
   display:inline-flex;align-items:center;gap:0.5rem;
-  background:rgba(250,246,238,0.7);backdrop-filter:blur(10px);
+  background:rgba(0,54,49,0.07);
   border:1px solid var(--border);border-radius:100px;
   padding:0.4rem 1rem;font-size:0.78rem;color:var(--ink-mid);
   margin-bottom:1.75rem;animation:fadeUp 0.8s ease both;
 }
-.eye-dot{width:6px;height:6px;border-radius:50%;background:var(--sage-deep);animation:pulse 2s ease infinite}
+.eye-dot{width:6px;height:6px;border-radius:50%;background:var(--green);animation:pulse 2s ease infinite}
 @keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.5)}}
 
 .hero-title{
@@ -272,8 +278,8 @@ a{color:inherit;text-decoration:none}
   margin-bottom:1.25rem;animation:fadeUp 0.8s 0.1s ease both;
 }
 .grad-text{
-  background:linear-gradient(135deg,var(--sage-deep) 0%,var(--terra-deep) 60%,var(--rose-deep) 100%);
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  color:var(--green);
+  font-style:italic;
 }
 .hero-sub{
   font-size:clamp(0.9rem,2vw,1.05rem);line-height:1.75;color:var(--ink-mid);
@@ -286,41 +292,42 @@ a{color:inherit;text-decoration:none}
 }
 .preview-card{
   padding:1rem;border-radius:var(--r-md);
-  background:rgba(250,246,238,0.6);backdrop-filter:blur(12px);
-  border:1px solid rgba(255,255,255,0.5);text-align:left;
+  background:rgba(0,54,49,0.05);
+  border:1px solid var(--border);text-align:left;
   transition:var(--spring);
 }
-.preview-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-md)}
+.preview-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-md);background:var(--green);border-color:var(--green)}
+.preview-card:hover b,.preview-card:hover p{color:var(--bg)!important}
 .preview-card span{font-size:1.4rem;display:block;margin-bottom:0.4rem}
-.preview-card b{display:block;font-family:var(--font-display);font-size:0.82rem;font-weight:700;margin-bottom:0.15rem;color:var(--ink)}
-.preview-card p{font-size:0.72rem;color:var(--ink-muted);line-height:1.5}
+.preview-card b{display:block;font-family:var(--font-display);font-size:0.82rem;font-weight:700;margin-bottom:0.15rem;color:var(--ink);transition:color 0.3s}
+.preview-card p{font-size:0.72rem;color:var(--ink-muted);line-height:1.5;transition:color 0.3s}
 
 /* ─── PAGE INNER ─── */
 .page-inner{max-width:880px;margin:0 auto;padding:clamp(1.5rem,4vw,3rem) clamp(1rem,4vw,2rem);min-height:100%}
 .page-header{margin-bottom:2.25rem}
-.page-label{font-size:0.72rem;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:var(--sage-deep);margin-bottom:0.75rem}
+.page-label{font-size:0.72rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--green);margin-bottom:0.75rem}
 .page-title{font-family:var(--font-display);font-size:clamp(1.75rem,4vw,2.5rem);font-weight:900;letter-spacing:-0.02em;line-height:1.1;color:var(--ink);margin-bottom:0.5rem}
 .page-sub{font-size:clamp(0.88rem,2vw,0.98rem);color:var(--ink-mid);line-height:1.7;font-weight:300}
 
 /* ─── BUTTONS ─── */
 .btn-primary{
   display:inline-flex;align-items:center;gap:0.45rem;
-  padding:0.85rem 1.75rem;background:var(--ink);color:var(--cream);
-  font-family:var(--font-body);font-weight:500;font-size:0.88rem;
+  padding:0.85rem 1.75rem;background:var(--green);color:var(--bg);
+  font-family:var(--font-body);font-weight:600;font-size:0.88rem;
   border-radius:100px;border:none;
-  box-shadow:0 3px 14px rgba(45,36,32,0.2);
+  box-shadow:0 3px 14px rgba(0,54,49,0.25);
   transition:var(--spring);white-space:nowrap;letter-spacing:0.02em;
 }
-.btn-primary:hover{background:var(--sage-deep);transform:translateY(-2px);box-shadow:0 6px 22px rgba(74,122,68,0.3)}
+.btn-primary:hover{background:var(--green-mid);transform:translateY(-2px);box-shadow:0 6px 22px rgba(0,54,49,0.3)}
 .btn-primary:active{transform:scale(0.98)}
 
 .btn-ghost{
   display:inline-flex;align-items:center;gap:0.45rem;
   padding:0.85rem 1.75rem;background:transparent;color:var(--ink-mid);
   font-weight:400;font-size:0.88rem;border-radius:100px;
-  border:1px solid var(--border);transition:var(--ease);white-space:nowrap;
+  border:1.5px solid var(--border-strong);transition:var(--ease);white-space:nowrap;
 }
-.btn-ghost:hover{background:var(--sage-light);color:var(--sage-deep);border-color:var(--sage)}
+.btn-ghost:hover{background:var(--green);color:var(--bg);border-color:var(--green)}
 
 .btn-sm{padding:0.55rem 1.2rem;font-size:0.8rem}
 
@@ -330,8 +337,8 @@ a{color:inherit;text-decoration:none}
   border:1px solid var(--border);box-shadow:var(--shadow-lg);overflow:hidden;
 }
 .sim-progress{padding:1.75rem 2rem 0}
-.prog-track{height:4px;background:var(--cream-dark);border-radius:100px;margin-bottom:1.25rem;overflow:hidden}
-.prog-fill{height:100%;background:linear-gradient(90deg,var(--sage),var(--terra));border-radius:100px;transition:width 0.5s ease;width:16.66%}
+.prog-track{height:4px;background:var(--green-pale);border-radius:100px;margin-bottom:1.25rem;overflow:hidden}
+.prog-fill{height:100%;background:linear-gradient(90deg,var(--green),var(--green-mid));border-radius:100px;transition:width 0.5s ease;width:16.66%}
 .prog-dots{display:flex;gap:0.5rem;justify-content:center}
 .p-step{
   width:28px;height:28px;border-radius:50%;
@@ -339,8 +346,8 @@ a{color:inherit;text-decoration:none}
   font-size:0.72rem;font-weight:500;border:1.5px solid var(--border);
   color:var(--ink-muted);transition:var(--ease);
 }
-.p-step.active{background:var(--sage-deep);color:white;border-color:var(--sage-deep)}
-.p-step.done{background:var(--terra);color:white;border-color:var(--terra)}
+.p-step.active{background:var(--green);color:var(--bg);border-color:var(--green)}
+.p-step.done{background:var(--yellow-deep);color:var(--green);border-color:var(--yellow-deep)}
 
 .sim-steps{min-height:380px}
 .step{display:none;padding:1.75rem 2rem;animation:fadeUp 0.3s ease both}
@@ -360,55 +367,55 @@ a{color:inherit;text-decoration:none}
 .fg input[type="number"],
 .fg select,
 .fg textarea{
-  padding:0.65rem 0.875rem;border:1px solid var(--border);
+  padding:0.65rem 0.875rem;border:1.5px solid var(--border);
   border-radius:var(--r-sm);font-size:0.88rem;color:var(--ink);
-  background:var(--cream);transition:var(--ease);outline:none;
+  background:var(--bg-muted);transition:var(--ease);outline:none;
   font-family:var(--font-body);
 }
 .fg input:focus,.fg select:focus,.fg textarea:focus{
-  border-color:var(--sage);background:white;
-  box-shadow:0 0 0 3px rgba(143,175,138,0.15);
+  border-color:var(--green);background:white;
+  box-shadow:0 0 0 3px rgba(0,54,49,0.1);
 }
 textarea{resize:vertical;min-height:68px}
 
 .fg input[type="range"]{
   -webkit-appearance:none;appearance:none;
-  height:4px;border-radius:100px;background:var(--cream-dark);border:none;outline:none;padding:0;width:100%;
+  height:4px;border-radius:100px;background:var(--green-pale);border:none;outline:none;padding:0;width:100%;
 }
 .fg input[type="range"]::-webkit-slider-thumb{
   -webkit-appearance:none;width:18px;height:18px;border-radius:50%;
-  background:var(--sage-deep);border:2.5px solid white;box-shadow:0 2px 8px rgba(74,122,68,0.3);
+  background:var(--green);border:2.5px solid white;box-shadow:0 2px 8px rgba(0,54,49,0.3);
 }
-.rv{color:var(--sage-deep);font-weight:600}
+.rv{color:var(--green);font-weight:600}
 .rl{display:flex;justify-content:space-between;font-size:0.7rem;color:var(--ink-muted);margin-top:0.15rem}
 
 .chips{display:flex;flex-wrap:wrap;gap:0.35rem}
 .chip-groups{display:flex;flex-direction:column;gap:0.875rem}
 .cg{display:flex;flex-direction:column;gap:0.35rem}
-.cg-label{font-size:0.68rem;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;color:var(--ink-muted)}
+.cg-label{font-size:0.68rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--ink-muted)}
 .chip{
-  padding:0.32rem 0.8rem;border-radius:100px;border:1px solid var(--border);
-  font-size:0.78rem;font-weight:400;color:var(--ink-mid);background:white;
+  padding:0.32rem 0.8rem;border-radius:100px;border:1.5px solid var(--border);
+  font-size:0.78rem;font-weight:400;color:var(--ink-mid);background:var(--bg-muted);
   transition:var(--spring);font-family:var(--font-body);
 }
-.chip:hover{border-color:var(--sage);color:var(--sage-deep)}
-.chip.selected{background:var(--sage-deep);color:white;border-color:var(--sage-deep)}
+.chip:hover{border-color:var(--green);color:var(--green)}
+.chip.selected{background:var(--green);color:var(--bg);border-color:var(--green)}
 
 .rcards{display:flex;flex-wrap:wrap;gap:0.5rem}
 .rc{
   display:flex;align-items:center;gap:0.35rem;
-  padding:0.45rem 0.875rem;border:1px solid var(--border);
+  padding:0.45rem 0.875rem;border:1.5px solid var(--border);
   border-radius:var(--r-sm);font-size:0.83rem;font-weight:400;
-  color:var(--ink-mid);background:white;transition:var(--spring);min-height:40px;
+  color:var(--ink-mid);background:var(--bg-muted);transition:var(--spring);min-height:40px;
 }
 .rc input{display:none}
-.rc:has(input:checked){background:var(--sage-light);border-color:var(--sage);color:var(--sage-deep)}
-.rc:hover{border-color:var(--sage);transform:translateY(-1px)}
+.rc:has(input:checked){background:var(--green-pale);border-color:var(--green);color:var(--green)}
+.rc:hover{border-color:var(--green);transform:translateY(-1px)}
 
 .sim-nav-row{
   display:flex;align-items:center;justify-content:space-between;
   padding:1.25rem 2rem;border-top:1px solid var(--border);
-  background:var(--cream);gap:1rem;
+  background:var(--bg-muted);gap:1rem;
 }
 .step-counter{font-size:0.82rem;color:var(--ink-muted)}
 
@@ -417,7 +424,7 @@ textarea{resize:vertical;min-height:68px}
   display:flex;align-items:center;gap:0.75rem;
   padding:2rem;color:var(--ink-muted);font-size:0.9rem;
 }
-.ai-dots span{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--sage);margin:0 2px;animation:dotBounce 1.2s ease-in-out infinite}
+.ai-dots span{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--green);margin:0 2px;animation:dotBounce 1.2s ease-in-out infinite}
 .ai-dots span:nth-child(2){animation-delay:0.2s}
 .ai-dots span:nth-child(3){animation-delay:0.4s}
 @keyframes dotBounce{0%,80%,100%{transform:translateY(0)}40%{transform:translateY(-8px)}}
@@ -426,26 +433,27 @@ textarea{resize:vertical;min-height:68px}
 .futures-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.125rem}
 .future-card{
   border-radius:var(--r-md);padding:1.625rem;cursor:pointer;
-  transition:var(--spring);position:relative;overflow:hidden;border:1px solid transparent;
+  transition:var(--spring);position:relative;overflow:hidden;border:1.5px solid transparent;
 }
 .future-card:hover{transform:translateY(-7px) scale(1.01);box-shadow:var(--shadow-lg)}
-.future-card.thriving{background:linear-gradient(135deg,#E8F0E5,#D4E8CE)}
-.future-card.comfortable{background:linear-gradient(135deg,#EDE0CC,#F5E9D6)}
-.future-card.burnout{background:linear-gradient(135deg,#F5E0E2,#EDD5D8)}
-.future-card.unexpected{background:linear-gradient(135deg,#E8E4F0,#D8D2E8)}
+/* All future cards use green/yellow palette now */
+.future-card.thriving{background:linear-gradient(135deg,#FFEDA8,#F5DF90);border-color:rgba(0,54,49,0.12)}
+.future-card.comfortable{background:linear-gradient(135deg,#E0F0EC,#C8DDD8);border-color:rgba(0,54,49,0.12)}
+.future-card.burnout{background:linear-gradient(135deg,#FFF3CC,#FFE8A0);border-color:rgba(0,54,49,0.12)}
+.future-card.unexpected{background:linear-gradient(135deg,#C8DDD8,#A8CABB);border-color:rgba(0,54,49,0.12)}
 .future-emoji{font-size:2.25rem;margin-bottom:0.65rem}
-.future-type{font-size:0.68rem;font-weight:600;text-transform:uppercase;letter-spacing:0.12em;opacity:0.6;margin-bottom:0.2rem}
+.future-type{font-size:0.68rem;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;opacity:0.55;margin-bottom:0.2rem;color:var(--ink)}
 .future-card h3{font-family:var(--font-display);font-size:clamp(0.95rem,1.8vw,1.15rem);font-weight:700;margin-bottom:0.5rem;line-height:1.25;color:var(--ink)}
 .future-card p{font-size:0.82rem;line-height:1.65;opacity:0.75;margin-bottom:0.875rem;color:var(--ink)}
 .future-tags{display:flex;flex-wrap:wrap;gap:0.25rem;margin-bottom:0.875rem}
-.future-tag{padding:0.18rem 0.6rem;background:rgba(255,255,255,0.55);border-radius:100px;font-size:0.68rem;font-weight:500;color:var(--ink-mid)}
+.future-tag{padding:0.18rem 0.6rem;background:rgba(0,54,49,0.1);border-radius:100px;font-size:0.68rem;font-weight:600;color:var(--green)}
 .future-view-btn{
-  padding:0.45rem 1rem;background:rgba(255,255,255,0.65);
-  border-radius:100px;font-size:0.78rem;font-weight:500;
-  border:1px solid rgba(255,255,255,0.5);transition:var(--ease);
-  backdrop-filter:blur(8px);font-family:var(--font-body);
+  padding:0.45rem 1rem;background:var(--green);
+  border-radius:100px;font-size:0.78rem;font-weight:600;color:var(--bg);
+  border:none;transition:var(--ease);
+  font-family:var(--font-body);
 }
-.future-view-btn:hover{background:rgba(255,255,255,0.9)}
+.future-view-btn:hover{background:var(--green-mid)}
 
 .future-detail.hidden{display:none}
 .detail-card{background:white;border-radius:var(--r-lg);padding:clamp(1.5rem,4vw,2.25rem);border:1px solid var(--border);box-shadow:var(--shadow-md)}
@@ -454,14 +462,14 @@ textarea{resize:vertical;min-height:68px}
 .detail-title-group h2{font-family:var(--font-display);font-size:clamp(1.4rem,3vw,1.9rem);font-weight:900;color:var(--ink)}
 .detail-title-group p{color:var(--ink-muted);font-size:0.9rem;margin-top:0.2rem;font-weight:300}
 .detail-metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:0.75rem;margin-bottom:1.5rem}
-.detail-metric{background:var(--cream);border-radius:var(--r-sm);padding:0.875rem;text-align:center;border:1px solid var(--border)}
-.metric-val{font-family:var(--font-display);font-size:1.4rem;font-weight:700;display:block;color:var(--ink)}
+.detail-metric{background:var(--bg);border-radius:var(--r-sm);padding:0.875rem;text-align:center;border:1px solid var(--border)}
+.metric-val{font-family:var(--font-display);font-size:1.4rem;font-weight:700;display:block;color:var(--green)}
 .metric-label{font-size:0.68rem;color:var(--ink-muted);margin-top:0.15rem}
 .detail-body{display:grid;grid-template-columns:1fr 1fr;gap:1.125rem}
 .detail-section h4{font-family:var(--font-display);font-size:0.9rem;font-weight:700;margin-bottom:0.5rem;color:var(--ink)}
 .detail-list{list-style:none;display:flex;flex-direction:column;gap:0.4rem}
 .detail-list li{font-size:0.82rem;color:var(--ink-mid);display:flex;align-items:flex-start;gap:0.35rem;line-height:1.55;font-weight:300}
-.detail-list li::before{content:'✦';color:var(--sage-deep);flex-shrink:0;font-size:0.6rem;margin-top:3px}
+.detail-list li::before{content:'✦';color:var(--green);flex-shrink:0;font-size:0.6rem;margin-top:3px}
 
 .empty-state{text-align:center;padding:4rem 2rem}
 .empty-icon{font-size:3rem;margin-bottom:1rem}
@@ -471,12 +479,12 @@ textarea{resize:vertical;min-height:68px}
 /* ─── LETTERS ─── */
 .letter-tabs{display:flex;gap:0.5rem;margin-bottom:1.625rem;flex-wrap:wrap}
 .letter-tab{
-  padding:0.5rem 1.1rem;border-radius:100px;border:1px solid var(--border);
-  font-size:0.82rem;font-weight:400;color:var(--ink-mid);background:white;
+  padding:0.5rem 1.1rem;border-radius:100px;border:1.5px solid var(--border);
+  font-size:0.82rem;font-weight:400;color:var(--ink-mid);background:var(--bg-muted);
   transition:var(--spring);min-height:40px;font-family:var(--font-body);
 }
-.letter-tab.active{background:var(--ink);color:var(--cream);border-color:transparent}
-.letter-tab:hover:not(.active){border-color:var(--sage);color:var(--sage-deep)}
+.letter-tab.active{background:var(--green);color:var(--bg);border-color:transparent}
+.letter-tab:hover:not(.active){border-color:var(--green);color:var(--green)}
 .letter-card{
   background:white;border-radius:var(--r-md);
   padding:clamp(1.5rem,4vw,2.25rem);border:1px solid var(--border);
@@ -485,76 +493,76 @@ textarea{resize:vertical;min-height:68px}
 .letter-card::before{
   content:'"';position:absolute;top:0.25rem;left:1.25rem;
   font-family:var(--font-display);font-size:5rem;font-weight:900;
-  color:var(--cream-dark);line-height:1;z-index:0;
+  color:var(--bg-deep);line-height:1;z-index:0;
 }
-.letter-from{font-family:var(--font-hand);font-size:0.9rem;color:var(--sage-deep);margin-bottom:0.875rem;position:relative;z-index:1}
+.letter-from{font-family:var(--font-hand);font-size:0.9rem;color:var(--green);margin-bottom:0.875rem;position:relative;z-index:1}
 .letter-body{font-size:0.92rem;line-height:1.9;color:var(--ink-mid);position:relative;z-index:1;white-space:pre-line;min-height:80px;font-weight:300}
 .letter-sign{margin-top:1.25rem;font-family:var(--font-hand);font-size:1.1rem;color:var(--ink-muted);transition:opacity 0.6s ease}
 
 /* ─── CONSTELLATION ─── */
-#page-constellation{background:#1A1510}
-#page-constellation .page-label{color:var(--sage)}
-#page-constellation .page-title{color:#FAF6EE}
-#page-constellation .page-sub{color:rgba(250,246,238,0.5)}
+#page-constellation{background:var(--green)}
+#page-constellation .page-label{color:var(--bg);opacity:0.7}
+#page-constellation .page-title{color:var(--bg)}
+#page-constellation .page-sub{color:rgba(255,237,168,0.5)}
 #conCanvas{width:100%;max-width:840px;height:auto;display:block;margin:0 auto;border-radius:var(--r-md)}
-.con-legend{display:flex;gap:1.5rem;justify-content:center;margin-top:0.875rem;font-size:0.78rem;color:rgba(250,246,238,0.4);flex-wrap:wrap}
+.con-legend{display:flex;gap:1.5rem;justify-content:center;margin-top:0.875rem;font-size:0.78rem;color:rgba(255,237,168,0.45);flex-wrap:wrap}
 .con-legend span{display:flex;align-items:center;gap:0.35rem}
 .dot{width:7px;height:7px;border-radius:50%;display:inline-block}
-.green-dot{background:var(--sage)}
-.purple-dot{background:var(--rose);opacity:0.5}
+.green-dot{background:var(--bg)}
+.purple-dot{background:rgba(255,237,168,0.35)}
 
 /* ─── METERS ─── */
 .meters-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.125rem}
-.meter-card{background:white;border-radius:var(--r-md);padding:1.4rem;border:1px solid var(--border);box-shadow:var(--shadow-sm);transition:var(--ease)}
-.meter-card:hover{border-color:var(--sage)}
+.meter-card{background:white;border-radius:var(--r-md);padding:1.4rem;border:1.5px solid var(--border);box-shadow:var(--shadow-sm);transition:var(--ease)}
+.meter-card:hover{border-color:var(--green)}
 .meter-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:0.875rem}
 .meter-name{font-family:var(--font-display);font-size:0.9rem;font-weight:700;color:var(--ink)}
-.meter-score{font-family:var(--font-display);font-size:1.4rem;font-weight:900;color:var(--sage-deep)}
-.meter-bar{height:6px;background:var(--cream-dark);border-radius:100px;overflow:hidden;margin-bottom:0.55rem}
+.meter-score{font-family:var(--font-display);font-size:1.4rem;font-weight:900;color:var(--green)}
+.meter-bar{height:6px;background:var(--green-pale);border-radius:100px;overflow:hidden;margin-bottom:0.55rem}
 .meter-fill{height:100%;border-radius:100px;transition:width 1.4s cubic-bezier(0.4,0,0.2,1);width:0}
-.mf-energy{background:linear-gradient(90deg,var(--sage),#6BAF65)}
-.mf-stress{background:linear-gradient(90deg,var(--terra),var(--rose-deep))}
-.mf-growth{background:linear-gradient(90deg,var(--taupe),var(--terra))}
-.mf-balance{background:linear-gradient(90deg,var(--sage-deep),var(--terra-deep))}
+.mf-energy{background:linear-gradient(90deg,var(--green-light),var(--green))}
+.mf-stress{background:linear-gradient(90deg,var(--yellow-deep),var(--yellow-warm))}
+.mf-growth{background:linear-gradient(90deg,var(--green-mid),var(--green-light))}
+.mf-balance{background:linear-gradient(90deg,var(--green),var(--green-mid))}
 .meter-desc{font-size:0.8rem;color:var(--ink-muted);line-height:1.6;font-weight:300}
-.burnout-tip{margin-top:1.5rem;background:linear-gradient(135deg,var(--sage-light),var(--taupe-light));border-radius:var(--r-md);padding:1.125rem 1.375rem;border:1px solid var(--border);font-size:0.88rem;color:var(--ink-mid);line-height:1.7;font-weight:300}
-.burnout-tip strong{font-weight:500;color:var(--sage-deep)}
+.burnout-tip{margin-top:1.5rem;background:linear-gradient(135deg,var(--bg),var(--bg-deep));border-radius:var(--r-md);padding:1.125rem 1.375rem;border:1.5px solid var(--border);font-size:0.88rem;color:var(--ink-mid);line-height:1.7;font-weight:300}
+.burnout-tip strong{font-weight:600;color:var(--green)}
 
 /* ─── QUESTS ─── */
 .xp-bar-wrap{margin-bottom:1.625rem}
 .xp-label{font-size:0.83rem;font-weight:400;color:var(--ink-mid);margin-bottom:0.45rem}
-.xp-label span{color:var(--sage-deep);font-weight:600;font-family:var(--font-display)}
-.xp-track{height:6px;background:var(--cream-dark);border-radius:100px;overflow:hidden}
-.xp-fill{height:100%;background:linear-gradient(90deg,var(--sage),var(--terra));border-radius:100px;transition:width 0.6s ease}
+.xp-label span{color:var(--green);font-weight:700;font-family:var(--font-display)}
+.xp-track{height:6px;background:var(--green-pale);border-radius:100px;overflow:hidden}
+.xp-fill{height:100%;background:linear-gradient(90deg,var(--green),var(--green-light));border-radius:100px;transition:width 0.6s ease}
 .quests-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:0.875rem}
 .quest-card{
   background:white;border-radius:var(--r-md);padding:1.125rem;
-  border:1px solid var(--border);display:flex;gap:0.75rem;align-items:flex-start;
+  border:1.5px solid var(--border);display:flex;gap:0.75rem;align-items:flex-start;
   transition:var(--spring);cursor:pointer;min-height:44px;
 }
-.quest-card:hover{transform:translateX(4px);border-color:var(--sage);box-shadow:var(--shadow-sm)}
-.quest-card.completed{background:var(--sage-light);border-color:var(--sage);opacity:0.78}
+.quest-card:hover{transform:translateX(4px);border-color:var(--green);box-shadow:var(--shadow-sm)}
+.quest-card.completed{background:var(--bg);border-color:var(--green);opacity:0.85}
 .quest-icon{font-size:1.6rem;flex-shrink:0}
 .quest-body{flex:1;min-width:0}
 .quest-title{font-family:var(--font-display);font-size:0.85rem;font-weight:700;margin-bottom:0.15rem;color:var(--ink)}
 .quest-desc{font-size:0.78rem;color:var(--ink-muted);line-height:1.5;margin-bottom:0.4rem;font-weight:300}
-.quest-xp{display:inline-block;padding:0.12rem 0.5rem;background:var(--sage-light);color:var(--sage-deep);border-radius:100px;font-size:0.68rem;font-weight:600}
+.quest-xp{display:inline-block;padding:0.12rem 0.5rem;background:var(--bg);color:var(--green);border-radius:100px;font-size:0.68rem;font-weight:700;border:1px solid var(--border)}
 .quest-check{width:24px;height:24px;border-radius:50%;border:1.5px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:0.78rem;transition:var(--spring);flex-shrink:0;background:white}
-.quest-card.completed .quest-check{background:var(--sage-deep);border-color:var(--sage-deep);color:white}
+.quest-card.completed .quest-check{background:var(--green);border-color:var(--green);color:var(--bg)}
 
 /* ─── SDG ─── */
 .sdg-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem}
-.sdg-card{background:white;border-radius:var(--r-md);padding:1.35rem;border:1px solid var(--border);transition:var(--spring);box-shadow:var(--shadow-sm)}
-.sdg-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-md)}
-.sdg-num{font-family:var(--font-display);font-size:2rem;font-weight:900;color:var(--cream-dark);line-height:1;margin-bottom:0.35rem}
+.sdg-card{background:white;border-radius:var(--r-md);padding:1.35rem;border:1.5px solid var(--border);transition:var(--spring);box-shadow:var(--shadow-sm)}
+.sdg-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-md);border-color:var(--green)}
+.sdg-num{font-family:var(--font-display);font-size:2rem;font-weight:900;color:var(--green-pale);line-height:1;margin-bottom:0.35rem}
 .sdg-title{font-family:var(--font-display);font-size:0.85rem;font-weight:700;margin-bottom:0.35rem;color:var(--ink)}
 .sdg-card p{font-size:0.78rem;color:var(--ink-muted);line-height:1.6;margin-bottom:0.875rem;font-weight:300}
-.sdg-bar{height:4px;background:var(--cream-dark);border-radius:100px;overflow:hidden}
+.sdg-bar{height:4px;background:var(--green-pale);border-radius:100px;overflow:hidden}
 .sdg-fill{height:100%;border-radius:100px;width:var(--p,50%);transition:width 1s 0.3s ease}
-.sf1{background:linear-gradient(90deg,var(--sage),var(--sage-deep))}
-.sf2{background:linear-gradient(90deg,var(--rose),var(--rose-deep))}
-.sf3{background:linear-gradient(90deg,var(--taupe),var(--taupe-deep))}
-.sf4{background:linear-gradient(90deg,var(--terra),var(--terra-deep))}
+.sf1{background:linear-gradient(90deg,var(--green-light),var(--green))}
+.sf2{background:linear-gradient(90deg,var(--yellow-deep),var(--yellow-warm))}
+.sf3{background:linear-gradient(90deg,var(--green-mid),var(--green-light))}
+.sf4{background:linear-gradient(90deg,var(--green),var(--green-mid))}
 .sdg-pct{font-size:0.7rem;color:var(--ink-muted);font-weight:500;margin-top:0.3rem;display:block}
 .sdg-footer{margin-top:1.75rem;text-align:center;font-size:0.88rem;color:var(--ink-muted);font-family:var(--font-hand)}
 
@@ -921,12 +929,12 @@ textarea{resize:vertical;min-height:68px}
     </div>
 
     <!-- ════ CONSTELLATION ════ -->
-    <div class="page" id="page-constellation" style="background:#1A1510">
+    <div class="page" id="page-constellation" style="background:var(--green)">
       <div class="page-inner">
         <div class="page-header">
           <div class="page-label">⭐ Skill Constellation</div>
-          <h2 class="page-title" style="color:#FAF6EE">Your skill universe.</h2>
-          <p class="page-sub" style="color:rgba(250,246,238,0.5)">Every skill is a star. Every path is a story. Hover to explore your constellation.</p>
+          <h2 class="page-title" style="color:var(--bg)">Your skill universe.</h2>
+          <p class="page-sub" style="color:rgba(255,237,168,0.5)">Every skill is a star. Every path is a story. Hover to explore your constellation.</p>
         </div>
         <canvas id="conCanvas" width="840" height="480"></canvas>
         <div class="con-legend">
@@ -1066,9 +1074,9 @@ const morphWords=[
   'ChaosCoordinator',
   'RecoveringPerfectionist',
   'AcademicWeapon',
-  'TrustTheProcess'
-  'Everything', 
-  'FUTURE YOU' ];
+  'TrustTheProcess',
+  'Everything',
+  'FUTURE YOU'];
 const morphWordEl = document.getElementById('morphWord');
 const morphPrefixEl = document.getElementById('morphPrefix');
 const introTagline = document.getElementById('introTagline');
@@ -1077,7 +1085,7 @@ const enterBtn = document.getElementById('enterBtn');
 // Spawn floating particles
 (function spawnParticles() {
   const container = document.getElementById('introParticles');
-  const colors = ['rgba(143,175,138','rgba(232,180,184','rgba(196,168,130','rgba(212,132,90'];
+  const colors = ['rgba(255,237,168','rgba(255,248,214','rgba(26,110,94','rgba(200,221,216'];
   for(let i=0;i<22;i++){
     const p = document.createElement('div');
     p.className = 'particle';
@@ -1100,7 +1108,6 @@ const enterBtn = document.getElementById('enterBtn');
 let morphIdx = 0;
 let morphTimer = null;
 let morphDone = false;
-// Intervals: start at 1600ms, accelerate to 200ms by the end
 function getMorphInterval(idx) {
   const progress = idx / (morphWords.length - 2);
   return Math.max(200, Math.round(1600 - progress * 1400));
@@ -1110,7 +1117,6 @@ function doNextMorph() {
   if(morphDone) return;
   morphIdx++;
   if(morphIdx >= morphWords.length - 1) {
-    // Final: FUTURE YOU — stays permanently
     morphWordEl.classList.add('out');
     setTimeout(() => {
       morphWordEl.innerHTML = '<span class="final-text">FUTURE YOU</span>';
@@ -1131,7 +1137,6 @@ function doNextMorph() {
   morphTimer = setTimeout(doNextMorph, getMorphInterval(morphIdx));
 }
 
-// Start after 1.2s
 setTimeout(() => { morphTimer = setTimeout(doNextMorph, getMorphInterval(0)); }, 1200);
 
 function enterApp() {
@@ -1310,12 +1315,11 @@ const futureTemplates = {
       'Became the person others now casually ask for guidance'
     ],
     watchTemplate:()=>[
-      'Don’t let doing well turn into constant overdoing',
+      'Don't let doing well turn into constant overdoing',
       'Protect your mornings — they shape everything else',
-      'Growth feels good, but don’t forget to live inside it'
+      'Growth feels good, but don't forget to live inside it'
     ]
   },
-
   comfortable:{
     type:'Comfortable You',
     className:'comfortable',
@@ -1326,7 +1330,7 @@ const futureTemplates = {
       'Built routines that stopped resisting and started supporting',
       'Work stopped draining energy and started fitting life',
       'Relationships became steady, not performative',
-      'Life settled into “enough” — quietly peaceful, not loud but real'
+      'Life settled into "enough" — quietly peaceful, not loud but real'
     ],
     watchTemplate:()=>[
       'Comfort can slowly turn into autopilot if left unchecked',
@@ -1334,7 +1338,6 @@ const futureTemplates = {
       'Stay close to curiosity, not just routine'
     ]
   },
-
   burnout:{
     type:'Burned Out You',
     className:'burnout',
@@ -1348,12 +1351,11 @@ const futureTemplates = {
       'Rebuilt life slower, but with far more awareness'
     ],
     watchTemplate:()=>[
-      'Tiredness is not laziness — don’t mix them up',
+      'Tiredness is not laziness — don't mix them up',
       'Rest is maintenance, not reward',
-      'Saying no earlier would’ve saved a lot of repair work'
+      'Saying no earlier would've saved a lot of repair work'
     ]
   },
-
   unexpected:{
     type:'Unexpected You',
     className:'unexpected',
@@ -1387,13 +1389,12 @@ async function generateFutures(){
   if(grid){grid.innerHTML='';grid.style.display='grid';}
   if(empty)empty.style.display='none';
 
-  // Show loading state for all 4
   Object.entries(futureTemplates).forEach(([key,t])=>{
     const card=document.createElement('div');
     card.className=`future-card ${t.className}`;
     card.id=`fcard_${key}`;
     card.innerHTML=`
-      <div class="future-emoji">${t.emoji}</div>
+      <div class="future-emoji">${t.emoji||'🌿'}</div>
       <div class="future-type">${t.type}</div>
       <h3>${t.tagline(userData)}</h3>
       <div class="ai-loading"><div class="ai-dots"><span></span><span></span><span></span></div> generating your timeline...</div>
@@ -1408,33 +1409,30 @@ async function generateFutures(){
   generateMeters(scores);
   generateQuests();
 
-  // Generate AI descriptions for each future
   const prompt=(key,t)=>`
 User: ${userData.name||'Explorer'}, age ${userData.age||20}, studying ${userData.degree||'college'}, year ${userData.year||2}.
 Skills: ${(userData.skills||[]).join(', ')||'general skills'}.
-Dream role: ${userData.dreamRole||'undecided'}. Environment: ${userData.workEnv||'startup vibe ya thoda unpredictable flow'}.
-Motivation: ${userData.motivation||'impact aur inner peace ka mix'}.
-Sleep: ${userData.sleep||7}h. Screen time: ${userData.screen||3}h/day. Projects: ${userData.projects||'gradual, sometimes inconsistent progress'}. Exercise: ${userData.exercise||'occasional discipline'}.
-Internship: ${userData.intern||'process mein hai'}.
-Portfolio: ${userData.portfolio||'gradually shaping up, still evolving'}.
-Network: ${userData.network||'selective, limited but meaningful connections'}.
-Ambitions: "${userData.ambitions||'something meaningful banana, clarity abhi evolving hai'}".
-Fear: ${userData.fear||'same loop mein atak jana, progress na ho pana'}.
-Superpower wanted: ${userData.superpower||'consistent focus, jo kabhi kabhi bhatak jata hai'}.
+Dream role: ${userData.dreamRole||'undecided'}. Environment: ${userData.workEnv||'startup'}.
+Motivation: ${userData.motivation||'impact'}.
+Sleep: ${userData.sleep||7}h. Screen time: ${userData.screen||3}h/day. Projects: ${userData.projects||'weekly'}. Exercise: ${userData.exercise||'sometimes'}.
+Internship: ${userData.intern||'applying'}.
+Portfolio: ${userData.portfolio||'building'}.
+Network: ${userData.network||'moderate'}.
+Ambitions: "${userData.ambitions||'something meaningful'}".
+Fear: ${userData.fear||'stuck'}.
+Superpower wanted: ${userData.superpower||'focus'}.
 
-Scene:
 Create a 2-sentence vivid snapshot of the "${t.type}" version of their life.
 
 Tone:
-- Natural, polished Hinglish (not slang-heavy, not meme-style)
-- Feels like an inner voice that is calm, aware, and slightly observant
-- Light emotional warmth with subtle “haan, ye phase jaana-pehchana lagta hai” energy
-- A touch of poetic realism — everyday life, but seen with clarity
-- No motivational framing, no preaching, no clichés
-- “You” perspective, like a quiet reflection from the future
+- Natural, polished Hinglish (not slang-heavy)
+- Feels like an inner voice that is calm and slightly observant
+- Light emotional warmth with subtle relatable energy
+- A touch of poetic realism
+- No motivational framing, no preaching
+- "You" perspective
 
-Limit:
-Within 60 words, crisp but emotionally alive
+Within 60 words, crisp but emotionally alive.
 `;
   const keys = Object.keys(futureTemplates);
   for(const key of keys){
@@ -1444,7 +1442,7 @@ Within 60 words, crisp but emotionally alive
     if(!card)continue;
     const tags=t.tags(userData).map(tg=>`<span class="future-tag">${tg}</span>`).join('');
     card.innerHTML=`
-      <div class="future-emoji">${t.emoji}</div>
+      <div class="future-emoji">${t.emoji||'🌿'}</div>
       <div class="future-type">${t.type}</div>
       <h3>${t.tagline(userData)}</h3>
       <p>${desc || t.gainTemplate(userData)[0] + '. ' + t.gainTemplate(userData)[1] + '.'}</p>
@@ -1453,7 +1451,6 @@ Within 60 words, crisp but emotionally alive
     `;
   }
 
-  // Generate letters after futures
   generateLetters();
   buildConstellation();
 }
@@ -1472,7 +1469,7 @@ function showFutureDetail(key){
   content.innerHTML=`
     <div class="detail-card">
       <div class="detail-header">
-        <div class="detail-emoji">${t.emoji}</div>
+        <div class="detail-emoji">${t.emoji||'🌿'}</div>
         <div class="detail-title-group">
           <h2>${t.type}</h2>
           <p>${t.tagline(userData)}</p>
@@ -1521,7 +1518,7 @@ async function generateLetters(){
   letterMeta.forEach((l,i)=>{
     const tab=document.createElement('button');
     tab.className='letter-tab'+(i===0?' active':'');
-    tab.innerHTML=`${l.emoji} ${l.label}`;
+    tab.innerHTML=`${l.label}`;
     tab.addEventListener('click',()=>{
       document.querySelectorAll('.letter-tab').forEach(t=>t.classList.remove('active'));
       tab.classList.add('active');
@@ -1542,42 +1539,27 @@ async function showLetter(idx){
   container.innerHTML=`<div style="color:var(--ink-muted);font-size:0.88rem;padding:1rem 0;display:flex;align-items:center;gap:0.6rem"><div class="ai-dots"><span></span><span></span><span></span></div> ${l.label} is writing to you...</div>`;
 
   const t = futureTemplates[l.key];
-
-const prompt = `
+  const prompt = `
 You are ${l.label} — a slightly self-aware future version of ${userData.name || "this person"}, writing from about 5 years ahead.
 
-You’re not here to teach or advise. You’re just… remembering them. Talking like someone who’s been through it and finds their past self kind of endearing, sometimes funny, sometimes painfully relatable.
+You're not here to teach or advise. You're just… remembering them. Talking like someone who's been through it and finds their past self kind of endearing, sometimes funny, sometimes painfully relatable.
 
 Context:
 Name: ${userData.name || "Explorer"}
 Age: ${userData.age || 20}
 Background: ${userData.degree || "college life"}
 Current direction: ${userData.dreamRole || "still figuring things out"}
-Skills they’re exploring: ${(userData.skills || []).join(", ") || "a bunch of experiments"}
+Skills they're exploring: ${(userData.skills || []).join(", ") || "a bunch of experiments"}
 What they worry about: ${userData.fear || "feeling stuck sometimes"}
 What they want: "${userData.ambitions || "build something meaningful"}"
 
-Situation you’re responding to (${l.label}):
+Situation you're responding to (${l.label}):
 ${t.gainTemplate(userData)[0]}
 
-Tone of writing:
-- Feels like a late-night message from future self who knows too much
-- Light, human, a bit witty in a “I’ve seen this phase before” way
-- Not motivational, not preachy, not structured advice
-- More like emotional memory than guidance
+Tone: late-night message from future self, light and witty, not preachy. Around 180–220 words.
 
-It might casually include:
-- one real moment they’d recognize from their life (messy nights, small wins, overthinking loops, random breakthroughs)
-- one specific detail from their skills or interests so it feels personal, not generic
-
-Length:
-Around 180–220 words, but it can breathe naturally if it feels right.
-
-Start:
-"Hey ${userData.name || "you"}."
-
-Ending:
-Just drift out naturally, like a message that didn’t need a sign-off but has one anyway — something simple like a name, or “— you, from ahead”, or nothing too formal.
+Start: "Hey ${userData.name || "you"}."
+End naturally, simple sign-off.
 `;
 
   const text=await callClaude(prompt);
@@ -1613,16 +1595,16 @@ function generateMeters(scores){
   const growth=Math.min(100,Math.round(scores.careerMomentum*0.9+scores.creativity*0.1));
   const balance=Math.min(100,Math.round((scores.wellbeing+scores.productivity)/2));
 
-const meters=[
-  {name:'Energy',score:energy,cls:'mf-energy',
-    desc:energy>70?'You’re not tired, you’re just on airplane mode OFF and main character buffering at 120fps.':energy>45?'You’re functioning but emotionally on low battery saver + 3% optimism.':'Bro your energy is on “do not disturb” and it’s winning.'},
-  {name:'Stress',score:stress,cls:'mf-stress',
-    desc:stress<40?'Stress said “I’ll come later” and actually kept its promise. Rare W.':stress<65?'Stress is lowkey sitting in the corner like “notice me but don’t panic”.':'Stress has opened 47 tabs in your brain and none of them are responding.'},
-  {name:'Growth',score:growth,cls:'mf-growth',
-    desc:growth>70?'You’re evolving so fast even your past self is like “bhai update toh de deta”.':growth>45?'Growth is happening… silently… like background app refresh and mild self-respect increase.':'Growth is stuck on loading but at least it didn’t crash.'},
-  {name:'Balance',score:balance,cls:'mf-balance',
-    desc:balance>70?'Life balance is giving “sorted playlist, clean room, emotionally stable arc”.':balance>45?'Balance is okay but slightly chaotic like a half-charged phone and half-planned life.':'Balance left the chat without leaving a reason.'}
-];
+  const meters=[
+    {name:'Energy',score:energy,cls:'mf-energy',
+      desc:energy>70?'You're not tired, you're just on airplane mode OFF and main character buffering at 120fps.':energy>45?'You're functioning but emotionally on low battery saver + 3% optimism.':'Bro your energy is on "do not disturb" and it's winning.'},
+    {name:'Stress',score:stress,cls:'mf-stress',
+      desc:stress<40?'Stress said "I'll come later" and actually kept its promise. Rare W.':stress<65?'Stress is lowkey sitting in the corner like "notice me but don't panic".':'Stress has opened 47 tabs in your brain and none of them are responding.'},
+    {name:'Growth',score:growth,cls:'mf-growth',
+      desc:growth>70?'You're evolving so fast even your past self is like "bhai update toh de deta".':growth>45?'Growth is happening… silently… like background app refresh and mild self-respect increase.':'Growth is stuck on loading but at least it didn't crash.'},
+    {name:'Balance',score:balance,cls:'mf-balance',
+      desc:balance>70?'Life balance is giving "sorted playlist, clean room, emotionally stable arc".':balance>45?'Balance is okay but slightly chaotic like a half-charged phone and half-planned life.':'Balance left the chat without leaving a reason.'}
+  ];
   grid.innerHTML=meters.map(m=>`
     <div class="meter-card">
       <div class="meter-header">
@@ -1649,30 +1631,33 @@ function triggerMeters(){
 
 /* ══ QUESTS ══ */
 const allQuests=[
-{title:"Reach out to someone new",desc:"Start a conversation you’ve been postponing. No agenda required.",xp:40,difficulty:"medium",category:"connection",key:"q1"},
-{title:"Stabilize your sleep rhythm",desc:"Sleep before midnight and wake up without friction, twice this week.",xp:30,difficulty:"easy",category:"health",key:"q2"},
-{title:"Learn something unfamiliar",desc:"Spend 30 minutes on a topic you’re curious about but not required to know.",xp:25,difficulty:"easy",category:"growth",key:"q3"},
-{title:"Clear one area of disorder",desc:"Declutter a physical or digital space that’s been ignored.",xp:20,difficulty:"easy",category:"environment",key:"q4"},
-{title:"Move with intention",desc:"Walk, stretch, or exercise for at least 20 minutes without distraction.",xp:20,difficulty:"easy",category:"health",key:"q5"},
-{title:"Complete one avoided task",desc:"Do something you’ve been delaying. Imperfect execution is acceptable.",xp:60,difficulty:"hard",category:"discipline",key:"q6"},
-{title:"Unfiltered writing session",desc:"Write continuously for 10 minutes without editing or filtering thoughts.",xp:15,difficulty:"easy",category:"mind",key:"q7"},
-{title:"Replace one habitual distraction",desc:"Identify and reduce one recurring low-value habit.",xp:50,difficulty:"medium",category:"discipline",key:"q8"},
-{title:"Screen-free hour",desc:"Spend one uninterrupted hour without digital input.",xp:35,difficulty:"medium",category:"mind",key:"q9"},
-{title:"Deep listening session",desc:"Engage with music, speech, or silence without multitasking.",xp:20,difficulty:"easy",category:"mind",key:"q10"},
-{title:"Self-inquiry reflection",desc:"Identify what you are currently avoiding and why.",xp:25,difficulty:"medium",category:"mind",key:"q11"},
-{title:"Explore a new environment",desc:"Visit a place you have not been to before, even nearby.",xp:30,difficulty:"easy",category:"exploration",key:"q12"},
-{title:"One act of quiet assistance",desc:"Help someone without expectation or visibility.",xp:20,difficulty:"easy",category:"connection",key:"q13"},
-{title:"Organize digital clutter",desc:"Clean files, inbox, or workspace to reduce cognitive load.",xp:20,difficulty:"easy",category:"environment",key:"q14"},
-{title:"Begin something you are not good at",desc:"Engage in a skill without concern for performance.",xp:45,difficulty:"medium",category:"growth",key:"q15"},
-{title:"Step outside comfort patterns",desc:"Do something mildly uncomfortable with intention.",xp:60,difficulty:"hard",category:"discipline",key:"q16"},
-{title:"Record a meaningful moment",desc:"Capture a thought or experience you would otherwise forget.",xp:15,difficulty:"easy",category:"mind",key:"q17"},
-{title:"Eat one meal without distraction",desc:"No screens. No multitasking. Just presence.",xp:20,difficulty:"easy",category:"health",key:"q18"},
-{title:"Plan a future action",desc:"Make a small decision that affects the next 7–30 days.",xp:30,difficulty:"medium",category:"direction",key:"q19"},
-{title:"Five minutes of silence",desc:"Sit without input. Observe thought without reaction.",xp:25,difficulty:"easy",category:"mind",key:"q20"}
+  {title:"Reach out to someone new",desc:"Start a conversation you've been postponing. No agenda required.",xp:40,key:"q1"},
+  {title:"Stabilize your sleep rhythm",desc:"Sleep before midnight and wake up without friction, twice this week.",xp:30,key:"q2"},
+  {title:"Learn something unfamiliar",desc:"Spend 30 minutes on a topic you're curious about but not required to know.",xp:25,key:"q3"},
+  {title:"Clear one area of disorder",desc:"Declutter a physical or digital space that's been ignored.",xp:20,key:"q4"},
+  {title:"Move with intention",desc:"Walk, stretch, or exercise for at least 20 minutes without distraction.",xp:20,key:"q5"},
+  {title:"Complete one avoided task",desc:"Do something you've been delaying. Imperfect execution is acceptable.",xp:60,key:"q6"},
+  {title:"Unfiltered writing session",desc:"Write continuously for 10 minutes without editing or filtering thoughts.",xp:15,key:"q7"},
+  {title:"Replace one habitual distraction",desc:"Identify and reduce one recurring low-value habit.",xp:50,key:"q8"},
+  {title:"Screen-free hour",desc:"Spend one uninterrupted hour without digital input.",xp:35,key:"q9"},
+  {title:"Deep listening session",desc:"Engage with music, speech, or silence without multitasking.",xp:20,key:"q10"},
+  {title:"Self-inquiry reflection",desc:"Identify what you are currently avoiding and why.",xp:25,key:"q11"},
+  {title:"Explore a new environment",desc:"Visit a place you have not been to before, even nearby.",xp:30,key:"q12"},
+  {title:"One act of quiet assistance",desc:"Help someone without expectation or visibility.",xp:20,key:"q13"},
+  {title:"Organize digital clutter",desc:"Clean files, inbox, or workspace to reduce cognitive load.",xp:20,key:"q14"},
+  {title:"Begin something you are not good at",desc:"Engage in a skill without concern for performance.",xp:45,key:"q15"},
+  {title:"Step outside comfort patterns",desc:"Do something mildly uncomfortable with intention.",xp:60,key:"q16"},
+  {title:"Record a meaningful moment",desc:"Capture a thought or experience you would otherwise forget.",xp:15,key:"q17"},
+  {title:"Eat one meal without distraction",desc:"No screens. No multitasking. Just presence.",xp:20,key:"q18"},
+  {title:"Plan a future action",desc:"Make a small decision that affects the next 7–30 days.",xp:30,key:"q19"},
+  {title:"Five minutes of silence",desc:"Sit without input. Observe thought without reaction.",xp:25,key:"q20"}
 ];
+
+const questIcons=['🤝','😴','📚','🗂️','🏃','✅','✍️','📵','🔕','🎵','🪞','🗺️','🌱','💾','🎯','💪','📷','🥗','📅','🤫'];
+
 function updateXP(){
-  const total=allQuests.reduce((sum,q)=>sum+(questCompletion[q.key]?q.xpVal:0),0);
-  const maxXP=allQuests.reduce((sum,q)=>sum+q.xpVal,0);
+  const total=allQuests.reduce((sum,q)=>sum+(questCompletion[q.key]?q.xp:0),0);
+  const maxXP=allQuests.reduce((sum,q)=>sum+q.xp,0);
   const xpEl=document.getElementById('xpScore');const fillEl=document.getElementById('xpFill');
   if(xpEl)xpEl.textContent=total;
   if(fillEl)fillEl.style.width=(total/maxXP*100)+'%';
@@ -1683,13 +1668,13 @@ function updateXP(){
 
 function generateQuests(){
   const grid=document.getElementById('questsGrid');if(!grid)return;
-  grid.innerHTML=allQuests.map(q=>`
+  grid.innerHTML=allQuests.map((q,i)=>`
     <div class="quest-card${questCompletion[q.key]?' completed':''}" id="quest_${q.key}" onclick="toggleQuest('${q.key}',this)">
-      <div class="quest-icon">${q.icon}</div>
+      <div class="quest-icon">${questIcons[i]||'⭐'}</div>
       <div class="quest-body">
         <div class="quest-title">${q.title}</div>
         <div class="quest-desc">${q.desc}</div>
-        <span class="quest-xp">${q.xp}</span>
+        <span class="quest-xp">+${q.xp} XP</span>
       </div>
       <div class="quest-check">${questCompletion[q.key]?'✓':''}</div>
     </div>
@@ -1708,44 +1693,44 @@ function toggleQuest(key,card){
 
 /* ══ CONSTELLATION ══ */
 const skillPaths={
-"Making Someone Smile":["Kindness","Humor","Social Confidence","Empathy"],
-"Random Complimenting a Stranger":["Kindness","Social Confidence","Awareness"],
-"Listening to 3AM Rant":["Listening","Empathy","Patience","Friendship"],
-"Comforting a Friend":["Empathy","Emotional Support","Listening"],
-"Kindness":["Empathy","Emotional Support","Friendship"],
-"Listening":["Empathy","Patience","Friendship","Communication"],
-"Friendship":["Trust","Listening","Shared Experiences"],
-"Trust":["Friendship","Emotional Support","Boundaries"],
-"Emotional Support":["Listening","Empathy","Kindness"],
-"Social Confidence":["Communication","Humor","Self Expression"],
-"Humor":["Social Confidence","Creativity","Expression"],
-"Self Expression":["Creativity","Confidence","Writing"],
-"Confidence":["Self Expression","Social Confidence","Presence"],
-"Cooking a Basic Meal":["Patience","Creativity","Self Care"],
-"Cooking Something New":["Creativity","Experimentation","Patience"],
-"Baking Something for Someone":["Care","Creativity","Kindness"],
-"Making Tea/Coffee for Someone":["Care","Kindness","Routine"],
-"Walking Without Destination":["Mindfulness","Curiosity","Awareness"],
-"Exploring a New Place":["Curiosity","Confidence","Awareness"],
-"Noticing Small Details":["Mindfulness","Awareness","Presence"],
-"Writing Late Night Thoughts":["Expression","Self Awareness","Creativity"],
-"Journaling Feelings":["Self Awareness","Reflection","Emotional Clarity"],
-"Overthinking Survival":["Self Awareness","Reflection","Calmness"],
-"Helping Someone Without Being Asked":["Kindness","Awareness","Empathy"],
-"Sharing Food":["Kindness","Friendship","Care"],
-"Checking on a Friend":["Friendship","Care","Empathy"],
-"Handling Awkward Situations":["Confidence","Adaptability","Humor"],
-"Recovering from Embarrassment":["Confidence","Self Acceptance","Humor"],
-"Doing Nothing Guilt-Free":["Calmness","Self Acceptance","Mindfulness"],
-"Taking a Slow Morning":["Self Care","Mindfulness","Routine"],
-"Fixing a Messy Room":["Self Care","Discipline","Clarity"],
-"Organizing Your Life Corner":["Self Care","Focus","Clarity"],
-"Trying Something You’re Bad At":["Courage","Creativity","Self Acceptance"],
-"Starting Without Being Ready":["Courage","Confidence","Action"],
-"Apologizing Sincerely":["Emotional Intelligence","Humility","Communication"],
-"Saying No Politely":["Boundaries","Confidence","Self Respect"],
-"Late Night Deep Talks":["Friendship","Trust","Vulnerability"],
-"Sharing a Secret":["Trust","Friendship","Vulnerability"]
+  "Making Someone Smile":["Kindness","Humor","Social Confidence","Empathy"],
+  "Random Complimenting a Stranger":["Kindness","Social Confidence","Awareness"],
+  "Listening to 3AM Rant":["Listening","Empathy","Patience","Friendship"],
+  "Comforting a Friend":["Empathy","Emotional Support","Listening"],
+  "Kindness":["Empathy","Emotional Support","Friendship"],
+  "Listening":["Empathy","Patience","Friendship","Communication"],
+  "Friendship":["Trust","Listening","Shared Experiences"],
+  "Trust":["Friendship","Emotional Support","Boundaries"],
+  "Emotional Support":["Listening","Empathy","Kindness"],
+  "Social Confidence":["Communication","Humor","Self Expression"],
+  "Humor":["Social Confidence","Creativity","Expression"],
+  "Self Expression":["Creativity","Confidence","Writing"],
+  "Confidence":["Self Expression","Social Confidence","Presence"],
+  "Cooking a Basic Meal":["Patience","Creativity","Self Care"],
+  "Cooking Something New":["Creativity","Experimentation","Patience"],
+  "Baking Something for Someone":["Care","Creativity","Kindness"],
+  "Making Tea/Coffee for Someone":["Care","Kindness","Routine"],
+  "Walking Without Destination":["Mindfulness","Curiosity","Awareness"],
+  "Exploring a New Place":["Curiosity","Confidence","Awareness"],
+  "Noticing Small Details":["Mindfulness","Awareness","Presence"],
+  "Writing Late Night Thoughts":["Expression","Self Awareness","Creativity"],
+  "Journaling Feelings":["Self Awareness","Reflection","Emotional Clarity"],
+  "Overthinking Survival":["Self Awareness","Reflection","Calmness"],
+  "Helping Someone Without Being Asked":["Kindness","Awareness","Empathy"],
+  "Sharing Food":["Kindness","Friendship","Care"],
+  "Checking on a Friend":["Friendship","Care","Empathy"],
+  "Handling Awkward Situations":["Confidence","Adaptability","Humor"],
+  "Recovering from Embarrassment":["Confidence","Self Acceptance","Humor"],
+  "Doing Nothing Guilt-Free":["Calmness","Self Acceptance","Mindfulness"],
+  "Taking a Slow Morning":["Self Care","Mindfulness","Routine"],
+  "Fixing a Messy Room":["Self Care","Discipline","Clarity"],
+  "Organizing Your Life Corner":["Self Care","Focus","Clarity"],
+  "Trying Something You're Bad At":["Courage","Creativity","Self Acceptance"],
+  "Starting Without Being Ready":["Courage","Confidence","Action"],
+  "Apologizing Sincerely":["Emotional Intelligence","Humility","Communication"],
+  "Saying No Politely":["Boundaries","Confidence","Self Respect"],
+  "Late Night Deep Talks":["Friendship","Trust","Vulnerability"],
+  "Sharing a Secret":["Trust","Friendship","Vulnerability"]
 };
 
 let conStars=[];let conHover=null;let conAnimId=null;
@@ -1784,33 +1769,33 @@ function buildConstellation(){
 
 function drawCon(ctx,W,H){
   ctx.clearRect(0,0,W,H);
-  ctx.fillStyle='#1A1510';ctx.fillRect(0,0,W,H);
+  ctx.fillStyle='#003631';ctx.fillRect(0,0,W,H);
   // Connections
   conStars.forEach(star=>{
     if(!star.owned)return;
     (skillPaths[star.name]||[]).forEach(tn=>{
       const t=conStars.find(s=>s.name===tn);if(!t)return;
       ctx.beginPath();ctx.moveTo(star.x,star.y);ctx.lineTo(t.x,t.y);
-      ctx.strokeStyle=t.owned?'rgba(143,175,138,0.5)':'rgba(196,168,130,0.12)';
+      ctx.strokeStyle=t.owned?'rgba(255,237,168,0.45)':'rgba(255,237,168,0.1)';
       ctx.lineWidth=t.owned?1.5:0.5;ctx.stroke();
     });
   });
   // Stars
   conStars.forEach(s=>{
     s.twinkle+=0.018;
-    const alpha=s.owned?0.75+Math.sin(s.twinkle)*0.2:0.18+Math.sin(s.twinkle)*0.08;
+    const alpha=s.owned?0.75+Math.sin(s.twinkle)*0.2:0.2+Math.sin(s.twinkle)*0.08;
     const hovered=conHover===s;
     const r=hovered?s.r*2.5:(s.owned?s.r+Math.sin(s.twinkle)*1:s.r);
     if(s.owned){
       const grd=ctx.createRadialGradient(s.x,s.y,0,s.x,s.y,r*4);
-      grd.addColorStop(0,'rgba(143,175,138,0.2)');grd.addColorStop(1,'transparent');
+      grd.addColorStop(0,'rgba(255,237,168,0.18)');grd.addColorStop(1,'transparent');
       ctx.beginPath();ctx.arc(s.x,s.y,r*4,0,Math.PI*2);ctx.fillStyle=grd;ctx.fill();
     }
     ctx.beginPath();ctx.arc(s.x,s.y,r,0,Math.PI*2);
-    ctx.fillStyle=hovered?'#FAC775':(s.owned?'#8FAF8A':'#E8B4B8');
+    ctx.fillStyle=hovered?'#FFEDA8':(s.owned?'#FFEDA8':'rgba(255,237,168,0.3)');
     ctx.globalAlpha=alpha;ctx.fill();ctx.globalAlpha=1;
     if(s.owned||hovered){
-      ctx.fillStyle=hovered?'#FAC775':'rgba(250,246,238,0.7)';
+      ctx.fillStyle=hovered?'#FFEDA8':'rgba(255,237,168,0.65)';
       ctx.font=hovered?'bold 13px "DM Sans",sans-serif':'11px "DM Sans",sans-serif';
       ctx.textAlign='center';ctx.fillText(s.name,s.x,s.y-r-7);
     }
@@ -1829,13 +1814,13 @@ function drawCon(ctx,W,H){
     ctx.lineTo(bx+bW,by+bH-r2);ctx.arcTo(bx+bW,by+bH,bx+bW-r2,by+bH,r2);
     ctx.lineTo(bx+r2,by+bH);ctx.arcTo(bx,by+bH,bx,by+bH-r2,r2);
     ctx.lineTo(bx,by+r2);ctx.arcTo(bx,by,bx+r2,by,r2);ctx.closePath();
-    ctx.fillStyle='rgba(26,21,16,0.94)';ctx.fill();
-    ctx.fillStyle='#8FAF8A';ctx.font='bold 13px "DM Sans",sans-serif';ctx.textAlign='left';
+    ctx.fillStyle='rgba(0,20,18,0.95)';ctx.fill();
+    ctx.fillStyle='#FFEDA8';ctx.font='bold 13px "DM Sans",sans-serif';ctx.textAlign='left';
     ctx.fillText(s.name,bx+12,by+22);
-    ctx.fillStyle='rgba(250,246,238,0.45)';ctx.font='11px "DM Sans",sans-serif';
+    ctx.fillStyle='rgba(255,237,168,0.45)';ctx.font='11px "DM Sans",sans-serif';
     ctx.fillText(s.owned?'✦ In your constellation':'○ Not yet explored',bx+12,by+40);
     if(connected.length>0){
-      ctx.fillStyle='rgba(196,168,130,0.75)';ctx.fillText('Connects to:',bx+12,by+56);
+      ctx.fillStyle='rgba(255,237,168,0.7)';ctx.fillText('Connects to:',bx+12,by+56);
       connected.forEach((cn,ci)=>ctx.fillText('• '+cn,bx+14,by+72+ci*18));
     }
   }
